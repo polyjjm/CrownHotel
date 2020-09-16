@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="kr.co.crown.member.MemberDAOInterface">
+ 		<select id="adminMemberTotal" parameterType="kr.co.crown.board.PagingVO" resultType="java.lang.Integer">
+		select count(member_code) from member
+		<if test="searchKey !=null and searchWord !=null">
+			 where ${searchKey} like '%'||#{searchWord}||'%'
+		</if>
+		</select>
+		<select id="adminPointTotal" parameterType="kr.co.crown.board.PagingVO" resultType="java.lang.Integer">
+		select count(point_code) from point
+		<if test="searchKey !=null and searchWord !=null">
+			 where ${searchKey} like '%'||#{searchWord}||'%'
+		</if>
+		</select>
+		<select id="adminPointRecordTotal" parameterType="kr.co.crown.board.PagingVO" resultType="java.lang.Integer">
+		select count(point_code) from point where user_id=#{user_id}
+		<if test="searchKey !=null and searchWord !=null">
+			and ${searchKey} like '%'||#{searchWord}||'%'
+		</if>
+		</select>
+ 		<insert id="memberInsert" parameterType="kr.co.crown.member.MemberVO">
+ 			insert into member(member_code, user_name, user_En_name, country, user_tel, user_email,birthday, user_id, user_pwd, regdate,point)
+ 			values(member_seq.nextval, #{user_name}, #{user_En_name}, #{country}, #{user_tel}, #{user_email}, #{birthday}, #{user_id}, #{user_pwd},
+ 					sysdate,#{point})
+ 		</insert>
+ 		<insert id="pointInsert" parameterType="kr.co.crown.member.PointVO">
+ 			insert into point(point_code, user_id, point,point_date, point_name)
+ 			values(point_seq.nextval, #{user_id}, #{point},sysdate,#{point_name})
+ 		</insert>
+ 		<select id="IdCheck" resultType="java.lang.Integer">
+ 			select count(user_id) from member
+ 			where user_id = #{user_id}
+ 		</select>
+ 		<select id="emailCheck" resultType="java.lang.Integer">
+ 			select count(user_email) from member
+ 			where user_email = #{user_email}
+ 		</select>
+ 		<select id="memberlogin" parameterType="kr.co.crown.member.MemberVO" resultType="kr.co.crown.member.MemberVO">
+ 		 	select user_id, user_name ,user_pwd from member
+ 		 	where user_id=#{user_id} and user_pwd=#{user_pwd}
+ 		</select>
+ 		<select id="idFind"  resultType="kr.co.crown.member.MemberVO">
+ 			select user_id from member 
+ 			where user_name=#{user_name} and user_email=#{user_email}
+ 		</select>
+ 		<select id="pwdFind"  resultType="kr.co.crown.member.MemberVO">
+ 			select user_pwd from member 
+ 			where user_id=#{user_id} and user_email=#{user_email}
+ 		</select>
+ 		<insert id="authentication" parameterType="kr.co.crown.member.MemberDAOInterface">
+    		insert into member (user_id, user_pwd,user_email)
+    		values (#{user_id}, 0, #{user_email})
+    	</insert>
+    	<select id="adminMember" resultType="kr.co.crown.member.MemberVO">
+ 			select member_code, user_name, country, user_tel, user_email,birthday, user_id, user_pwd, regdate from member
+ 		</select>
+ 		<select id="adminPointList" resultType="kr.co.crown.member.PointVO">
+ 			select * from
+ 				(select * from
+ 				(select point_code, user_id, point,to_char(point_date ,'YY-MM-DD')point_date,point_name from point where user_id=#{user_id}
+ 			  <if test="searchKey != null and searchWord != null">
+                     	  and ${searchKey} like '%'||#{searchWord}||'%'
+                     </if> 
+                     <if test="pageNum == totalPage">
+	                      order by point_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by point_code asc) 
+	                      where rownum <![CDATA[<=]]> #{lastPageRecords} order by point_code desc
+                     </if>
+                     <if test="pageNum != totalPage">
+	                       order by point_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by point_code asc) 
+	                      where rownum <![CDATA[<=]]> #{onePageRecord} order by point_code desc
+                    </if>
+ 		</select>
+ 		<select id="adminMemberView" resultType="kr.co.crown.member.MemberVO">
+		select member_code, user_name,country, user_tel, user_email,birthday, user_id, user_pwd, regdate from member where member_code=#{param1}  
+		</select>
+		<update id="adminMemberUpdate">
+		update member set  user_name=#{param2},country=#{param3},user_tel=#{param4},user_email=#{param5},birthday=#{param6},user_id=#{param7},user_pwd=#{param8} where member_code=#{param1}
+		</update>
+		<delete id="adminMemberDelete">
+		delete from member where member_code=#{param1}
+		</delete>
+		<select id="adminMemberPaging" parameterType="kr.co.crown.board.PagingVO"  resultType="kr.co.crown.member.MemberVO">
+			select * from 
+				(select * from 
+                    (select member_code, user_id, user_name, to_char(regdate ,'YY-MM-DD') regdate
+                          from member 
+                     <if test="searchKey != null and searchWord != null">
+                     	  where ${searchKey} like '%'||#{searchWord}||'%'
+                     </if> 
+                     <if test="pageNum == totalPage">
+	                      order by member_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by member_code asc) 
+	                      where rownum <![CDATA[<=]]> #{lastPageRecords} order by member_code desc
+                     </if>
+                     <if test="pageNum != totalPage">
+	                       order by member_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by member_code asc) 
+	                      where rownum <![CDATA[<=]]> #{onePageRecord} order by member_code desc
+                    </if>
+			</select>
+		<select id="adminPointPaging" parameterType="kr.co.crown.board.PagingVO"  resultType="kr.co.crown.member.PointVO">
+			select * from 
+				(select * from 
+                    (select point_code, user_id, point, point_name,to_char(point_date ,'YY-MM-DD') point_date
+                          from point 
+                     <if test="searchKey != null and searchWord != null">
+                     	  where ${searchKey} like '%'||#{searchWord}||'%'
+                     </if> 
+                     <if test="pageNum == totalPage">
+	                      order by point_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by point_code asc) 
+	                      where rownum <![CDATA[<=]]> #{lastPageRecords} order by point_code desc
+                     </if>
+                     <if test="pageNum != totalPage">
+	                       order by point_code desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by point_code asc) 
+	                      where rownum <![CDATA[<=]]> #{onePageRecord} order by point_code desc
+                    </if>
+			</select>	
+			<insert id="memberLogin" parameterType="kr.co.crown.member.MemberLoginVO">
+				insert into log(log_code,user_id,log_date) 
+				values(memberlog_seq.nextval,#{user_id},sysdate)
+			</insert>
+		<select id="passwordCheck" resultType="java.lang.Integer">
+		select count(user_id) from member where user_id=#{param1} and user_pwd=#{param2}
+ 		</select>
+</mapper>
+

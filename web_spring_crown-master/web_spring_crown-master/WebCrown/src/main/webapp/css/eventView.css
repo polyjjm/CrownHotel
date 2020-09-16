@@ -1,0 +1,49 @@
+@charset "UTF-8";
+#mainDiv{width:1280px; margin:0px auto; padding:0px; overflow:hidden}
+	
+#title{padding-top:14px; padding-bottom:30px}
+	
+#contentTitle{text-align:center}
+#contentTitle>h1{margin:0px; font-size:45px}
+#contentTitle>p{display:inline-block; margin-top:10px; margin-bottom:30px; padding:5px 10px; border:1px solid #dcceb8; border-radius:2em; font-size:14px; color:#998465}
+
+#content{width:1150px; margin:0px auto}
+#eventContent{width:1150px; margin:0px auto; text-align:center}
+#eventContent>img{width:100%}
+#eventInfo{margin-bottom:42px; font-size:20px}
+#eventInfo>p{margin:42px}
+
+#eventType{border-top:1px solid #e6e6e6; border-bottom:1px solid #e6e6e6; padding:60px 0px}
+#leftDetail{float:left; width:24%; font-size:28px; padding:0px 20px}
+ul.eventContent li.eContent{list-style:none}
+li.eContent{padding:20px 0px}
+li.eContent>img{width:400px; height:220px; float:left}
+#eDetail{float:left; padding-left:36px; width:850px; padding-right:20px}
+#eDetail>h2{font-size:22px; font-weight:bold; margin-bottom:18px}
+#eDetail>strong{font-size:18px; margin-bottom:5px}
+#eSubDetail{width:100%; word-break:keep-all; word-wrap:break-word}
+
+#eventNotice{width:100%; padding-top:60px; padding-bottom:60px; float:left}
+#leftNotice{float:left; width:24%; font-size:28px; padding:0px 20px}
+#rightDetail{width:70%; float:left}
+
+#recommand{margin-top:30px; width:100%}
+#recommItem{width:1150px; margin:0px auto; padding:60px 0px; overflow:hidden}
+#recommItem>span{font-size:28px}
+#linkItem{margin:0px; padding-top:30px}
+#linkItem>a{text-decoration:none; color:black}
+#linkItem>a:hover{text-decoration:none; color:black}
+#item{width:31%; margin:0px; display:inline-block}
+#item>img{width:100%}
+#itemContent{width:100%}
+#itemC1{padding:10px; padding-bottom:0px}
+#itemC1>span:nth-child(1){font-size:22px; font-weight:bold}
+#itemC2>strong{font-size:26px}
+#itemC2{padding:10px; padding-top:0px; text-align:right}
+.word_cut{display:block; text-decoration:none; text-overflow:ellipsis; white-space:nowrap; overflow:hidden}
+.item3{float:right}
+#linkItem>a:nth-child(2){margin-left:35px}
+
+#packageList{width:100%; text-align:center; padding:60px 0px}
+#packageList>a>button{width:160px; height:50px; border:1px solid gray; background-color:white}
+#packageList>a>button:hover{border:1px solid black;}

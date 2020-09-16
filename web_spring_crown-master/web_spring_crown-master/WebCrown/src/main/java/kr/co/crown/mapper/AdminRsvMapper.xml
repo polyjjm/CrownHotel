@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.crown.admin.AdminRsvDAOImp">
+
+<select id="adminRsv" resultType="kr.co.crown.admin.AdminRsvVO" parameterType="kr.co.crown.admin.AdminRsvVO">
+
+<!-- 
+select
+ sum(payment) payment,
+ payment_code,
+ payment_order_number,
+ status,
+ pay_date,
+ name
+ from  payment 
+ where
+<if
+	 
+	test="param1 != null and param2 != null and param1 !='' and param2 !=''">
+
+	to_char(pay_date,'YYYY/MM/DD') <![CDATA[>]]>TO_DATE(#{param1},'YYYY/MM/DD')
+	and to_char(pay_date,'YYYY/MM/DD') <![CDATA[<=]]>
+	to_date(#{param2},'YYYY/MM/DD') and
+</if>
+
+
+
+<if test="param4 !=null or param4 !='' ">
+  (name like '%'||#{param4}||'%' or payment like '%'||#{param4}||'%' or room_rsv_code  like '%'||#{param4}||'%'
+ or payment_order_number like '%'||#{param4}||'%')
+
+</if>
+ group by payment_code,payment_order_number,status,pay_date,name
+ -->
+ select * from 
+			(select * from
+				(select sum(payment) payment, payment_code,payment_order_number,status,pay_date,name
+					from payment
+                    <where>
+	                    <if
+							test="check_in != null and check_out != null and check_in !='' and check_out !=''">
+							and to_char(pay_date,'YYYY/MM/DD') <![CDATA[>]]>TO_DATE(#{check_in},'YYYY/MM/DD')
+							and to_char(pay_date,'YYYY/MM/DD') <![CDATA[<=]]>
+							to_date(#{check_out},'YYYY/MM/DD')
+						</if>
+						<if test="searchWord != null and searchWord != '' ">
+						 and (name like '%'||#{searchWord}||'%' or payment like '%'||#{searchWord}||'%' or room_rsv_code  like '%'||#{searchWord}||'%'
+						 or payment_order_number like '%'||#{searchWord}||'%') 
+						
+						</if>
+						
+ 					</where>                  
+                    
+					group by payment_code,payment_order_number,status,pay_date,name
+					order by payment_code desc)
+
+			where rownum <![CDATA[<=]]> #{pageNum}*#{pageRecord} order by  payment_code asc)onePageCount
+		where rownum <![CDATA[<=]]><if test="pageNum == totalPage">#{lastPageRecord}</if><if test="pageNum != totalPage">#{onePageCount}</if> order by payment_code desc
+        
+ 
+ 
+
+</select>
+
+
+<select id="getTotalPage" resultType="java.lang.Integer"   parameterType="kr.co.crown.admin.AdminRsvVO">
+	select count(payment_code) from payment
+		                    <where>
+	                    <if
+							test="check_in != null and check_out != null and check_in !='' and check_out !=''">
+							and to_char(pay_date,'YYYY/MM/DD') <![CDATA[>]]>TO_DATE(#{check_in},'YYYY/MM/DD')
+							and to_char(pay_date,'YYYY/MM/DD') <![CDATA[<=]]>
+							to_date(#{check_out},'YYYY/MM/DD')
+						</if>
+						<if test="searchWord != null and searchWord != '' ">
+						 and (name like '%'||#{searchWord}||'%' or payment like '%'||#{searchWord}||'%' or room_rsv_code  like '%'||#{searchWord}||'%'
+						 or payment_order_number like '%'||#{searchWord}||'%') 
+						
+						</if>
+						
+ 					</where>  
+
+</select>
+
+
+
+
+
+
+<select id="adminRsvCodeSelect" resultType="int">
+
+select room_rsv_code from payment
+where payment_code = ${param1}
+
+
+</select>
+
+
+
+
+<select id="adminRsvInfo" resultType="kr.co.crown.admin.AdminRsvDetailVO" parameterType="int">
+
+select
+ r.check_in,
+ r.check_out,
+ rs.room_num,
+ r.room_people,
+ r.require,
+ r.breakfast_adult,
+ p.name,
+ p.payment_code,
+ p.payment
+ from
+ rsv r inner join rooms rs on r.room_code = rs.room_code 
+ inner join payment p on p.room_rsv_code = r.room_rsv_code
+ where r.room_rsv_code in (
+ <foreach collection="array" item="param1" index="i" separator=",">  
+ ${param1}
+ 
+ </foreach>
+
+)
+
+</select>
+
+
+
+
+
+
+
+	<select id="adminSales" resultType="kr.co.crown.admin.AdminSalesVO">
+SELECT DISTINCT
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '01') "January" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '02') "February" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM') = '03') "March" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '04') "April"  ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM') = '05') "May",
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '06') "June"  ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM') = '07') "July" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '08') "Auguest"  ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM') = '09') "September" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '10') "October" ,
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM') = '11') "November",
+    (SELECT SUM(payment) FROM payment WHERE TO_CHAR(pay_date,'MM')  = '12') "December"
+	FROM payment
+	</select>
+
+
+
+
+
+</mapper>

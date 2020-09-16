@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.mypage.MypageDAOImp">
+	<select id="memberSelect" parameterType="kr.co.crown.member.MemberVO" resultType="kr.co.crown.member.MemberVO">
+		select user_id, user_pwd, member_code, user_name, 
+		user_en_name, country, user_tel, user_email, 
+		birthday, regdate, point from member 
+	 	where user_id=#{user_id}
+	</select>
+	<update id="memberUpdate" parameterType="kr.co.crown.member.MemberVO">
+		update member set user_name=#{user_name}, user_email=#{user_email}, user_tel=#{user_tel} where user_id=#{user_id}
+	</update>
+	
+	<update id="memberUpdate2">
+		update member set user_pwd=#{param1} where user_id=#{param2}
+	</update>
+	
+	<delete id="memberDelete">
+		delete from member where user_id=#{wd_user_id}
+	</delete>
+	
+	<select id="pwdCheck" resultType="java.lang.Integer">
+		select count (user_id) from member where user_id=#{param1} and user_pwd=#{param2}
+	</select>
+	
+	<insert id="withDrawal" parameterType="kr.co.crown.member.MemberVO">
+ 		insert into with_drawal(wd_code, wd_user_id, wd_type, wd_content, wd_date)
+ 		values(with_drawal_seq.nextval, #{wd_user_id}, #{wd_type}, #{wd_content}, sysdate)
+ 	</insert>
+ 	
+ 	<select id="totalDate" parameterType="string" resultType="int">
+ 		select nvl(sum(TO_DATE(check_out,'YYYY/MM/DD') - TO_DATE(check_in,'YYYY/MM/DD')),0) total_date from rsv 
+ 		where user_id = #{param1}
+ 	</select>
+ 	
+ 	<select id="totalRsv" parameterType="string" resultType="int">
+ 		select count(user_id) from rsv where user_id = #{param1}
+ 	</select>
+ 	
+ 	<select id="totalPment" parameterType="string" resultType="int">
+ 		select nvl(sum (price),0) from rsv where user_id = #{param1}
+ 	</select>
+ 	
+ 	<select id="rsAllSearch" resultType="kr.co.crown.mypage.ReservationVO">
+ 		select * from 
+				(select * from 
+                    (select rownum, p.payment_order_number, r.room_name, to_char(rsv.check_in, 'YYYY-MM-DD')check_in, to_char(rsv.check_out, 'YYYY-MM-DD')check_out, p.status 
+						from payment p join rsv rsv on p.room_rsv_code=rsv.room_rsv_code 
+						join rooms rs on rsv.room_code=rs.room_code 
+						join room_type r on rs.room_type_code=r.room_type_code
+						<where>
+							rsv.user_id=#{user_id}
+	                     <if test="searchKey != null and startDate != null and startDate !='' and endDate != null and endDate !=''">
+	                     	   and ${searchKey} BETWEEN to_date(#{startDate},'YYYY-MM-DD') AND to_date(#{endDate},'YYYY-MM-dd')
+	                     </if> 
+                    	 </where>
+                     <if test="pageNum == totalPage">
+	                      order by payment_order_number desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by payment_order_number desc) 
+	                      where rownum <![CDATA[<=]]> #{lastPageRecords} order by payment_order_number asc
+                     </if>
+                     <if test="pageNum != totalPage">
+	                       order by payment_order_number asc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum} * #{onePageRecord} order by payment_order_number desc) 
+	                      where rownum <![CDATA[<=]]> #{onePageRecord} order by payment_order_number asc
+                    </if>
+		</select>
+	<select id="resTotalRecord" parameterType="kr.co.crown.board.PagingVO" resultType="java.lang.Integer">
+		select count(payment_order_number) from payment p join rsv rsv on p.room_rsv_code=rsv.room_rsv_code 
+						join rooms rs on rsv.room_code=rs.room_code 
+						join room_type r on rs.room_type_code=r.room_type_code
+						<where>
+							rsv.user_id=#{user_id}
+						     <if test="searchKey != null and startDate != null and startDate !='' and endDate !=null and endDate !=''">
+			                     	  and ${searchKey} BETWEEN to_date(#{startDate},'YYYY-MM-DD') AND to_date(#{endDate},'YYYY-MM-dd')
+			                  </if> 
+	                   </where>
+   </select>	
+ </mapper>

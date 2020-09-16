@@ -1,0 +1,106 @@
+@charset "UTF-8";
+*{font-family: 'Open Sans','Noto Sans KR',sans-serif;}
+body{margin:0;padding:0;}
+div{box-sizing:border-box;}
+ul,li{margin:0;padding:0;list-style-type:none;}
+a{text-decoration:none}
+a:link{text-decoration:none}
+a:visited{text-decoration:none}
+a:hover{text-decoration:none}
+/*==================== header =====================*/
+.h_content{width:1280px;margin:0 auto;}
+#header,#headerTop,#headerBottom{width:100%;background-color:#fff;}
+#headerBottom{border-bottom:1px solid #666;}
+#hTop{height:115px;position:relative;}
+#hMenu{height:60px;position:relative;text-align:center;}
+#hMenu>ul{height:60px;padding-top:10px;}
+#hMenu>ul>li{height:50px;}
+#hItemWrap{text-align:right;height:25px;position:absolute;top:30px;right:0px}
+#hItems{display:inline-block}
+#hItems>li{display:inline;padding:0 15px;border-left:1px solid #e0e0e0;font-size:14px;}
+#hItems>li:first-child{border-left:none;}
+#hItems a:link{color:#777}
+#hItems a:visited{color:#777}
+#hLogo{text-align:center;padding-top:23px;}
+#hLogo img{height:90px;}
+#hMenu>ul>li>a{font-size:18px;color:#666; font-weight:bold}
+#hMenu>ul>li{display:inline-block;padding:10px 15px 12px;margin:0 2px 0 2px;cursor:pointer}
+/* 헤더 메뉴리스트 상세 */
+#hWapper{width:100%;position:absolute;z-index:1000;display:none;background-color:#fff;padding-top:1px}
+.h_menulist_wrap{position:absolute;left:0px;opacity:0;
+width:100%;display:none;z-index:9999;top:60px;}
+.h_menulist_box{width:1280px;margin:0 auto;}
+.h_menulist_top{height:85px;padding:35px 0 0 13px;}
+.h_submenu_title{display:inline;float:left;height:50px;}
+.h_submenu_title>a{color:#333;font-size:30px;}
+.h_submenu_title>a:link{color:#333;}
+.h_submenu_title>a:visited{color:#333;}
+.h_submenu_title>a:nth-child(2){display:inline-block;height:20px;}
+.xi-play-circle-o{font-size:20px}
+.h_rev_link{display:inline-block}
+.h_rev_link{float:right;height:50px;margin-right:30px;}
+.h_rev_btn>a{color:#7d6f5b;font-weight:bold}
+.h_rev_img>img{width:20px;height:20px;}
+
+/* 헤더 서브메뉴 상세메뉴 */
+.h_menulist_content{padding:26px 0 40px 0;overflow:hidden}
+.h_menu_box{width:17.5%;padding:0 15px 0 15px;float:left;}
+.h_text_wrap{text-align:left}
+.h_text_wrap>li:first-child{font-size:20px;}
+.h_text_wrap>li:nth-child(n+2){padding-top:20px;}
+.h_text_wrap>li>a{font-size:18px;color:#333;
+padding:0 17px 10px 0;font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;}
+.h_menu_img{width:30%;height:225px;float:right;padding:0 15px 0 15px;}
+.h_menu_img img{width:100%;height:100%;}
+
+/* 예약버튼 */
+#hRsv{position:absolute;right:0px;top:10px;z-index:10;}
+#hRsv>a{width:auto;padding:8px 35px;font-size:18px;
+    line-height:40px;text-indent:0;background-color:red;}
+#hRsv>a:link{color:#fff}
+#hRsv>a:visited{color:#fff}
+#hRsv>a:hover{background-color:#b30000;}
+
+/*================== footer ========================*/
+.f01{background-color:#555;}
+.f02{background-color:#000;border-top: 1px solid rgba(255,255,255,.15);}
+.f03{background-color:#000;border-top: 1px solid rgba(255,255,255,.15);}
+#f01Inner{width:1280px;margin:0 auto;overflow:hidden;padding:20px 15px;}
+#f02Inner{width:1280px;margin:0 auto;overflow:hidden;padding:40px 15px 40px 15px;}
+#fInfo{width:1280px;margin:0 auto;overflow:hidden;padding:28px 5px 60px 5px;}
+
+#f01InnerDiv{display:inline-block;float:left;}
+#fInnerImg{height:36px;}
+#f01InnerList{display:inline-block;float:right;}
+#f01InnerList>ul>li{display:inline;margin-left:15px;}
+#f01InnerList>ul>li>a{height:28px;}
+.xi-facebook, .xi-instagram, .xi-youtube-play{font-size:28px;color:#fff}
+/* f02 */
+#f02Info{width:274px;float: left;}
+#f02Info>div{padding-top:19px;}
+#f02Info>a>img{height:70px;}
+#f02Info>div>p{font-weight:400;font-size:14px;color:#999;}
+
+#f02Link{text-align:left;float:right;width:300px;}
+#linkList{width:100%;padding-left:30px;}
+#linkList>a{color:#999;display:block;margin-bottom:10px;
+line-height:18px;font-size: 14px;}
+#linkList>a:link{color:#999;}
+#linkList>a:visited{color:#999;}
+#linkList>a:hover{color:#fff;}
+/* 풋터 인포 */
+#fInfo01>li{display:inline;padding:0 15px;border-left:1px solid #e0e0e0;font-size:14px;color:#666}
+#fInfo01>li:first-child{border-left:none;}
+#fInfo01 a:link{color:#666}
+#fInfo01 a:visited{color:#666}
+#fInfo01 a:hover{color:#fff}
+
+#fInfo02>li{display:inline;padding:0 15px;border-left:1px solid #e0e0e0;font-size:14px;color:#666}
+#fInfo02>li:first-child{border-left:none;}
+#fInfo02 a:link{color:#666}
+#fInfo02 a:visited{color:#666}
+#fInfo02 a:hover{color:#fff}
+
+
+
+

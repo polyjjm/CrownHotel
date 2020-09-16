@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.admin.AdminRoomTypeDAOImp">
+	<insert id="insertRoomTypeRecord" parameterType="kr.co.crown.admin.AdminRoomTypeVO">
+		insert into room_type(room_type_code, room_type, room_name, room_mdsp, room_sdsp, room_area, room_general, room_bath, room_etc, room_price, img)
+		values(room_type_sq.nextval, #{room_type}, #{room_name}, #{room_mdsp}, #{room_sdsp}, #{room_area}, #{room_general}, #{room_bath}, #{room_etc}, #{room_price}, #{img} )
+	</insert>
+	<select id="allSelectRoomTypeRecord" resultType="kr.co.crown.admin.AdminRoomTypeVO" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO">
+		select * from 
+			(select * from
+				(select room_type_code, room_type, room_name, room_mdsp, room_sdsp, room_area, room_general, room_bath, room_etc, room_price, img
+					from room_type
+					<if test="searchKey!=null and searchWord!=null">
+						where ${searchKey} like '%' || #{searchWord} || '%'
+					</if>
+				order by room_type_code desc)
+			where rownum <![CDATA[<=]]> #{pageNum}*#{pageRecord} order by room_type_code asc)onePageCount
+		where rownum <![CDATA[<=]]><if test="pageNum == totalPage">#{lastPageRecord}</if><if test="pageNum != totalPage">#{onePageCount}</if> order by room_type_code desc
+		
+	</select>
+	<select id="getTotalRoomTypeRecord" resultType="java.lang.Integer" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO" >
+		select count(room_type_code) from room_type
+		<if test="searchKey!=null and searchWord!=null">
+			where ${searchKey} like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	<select id="selectRoomTypeRecord" resultType="kr.co.crown.admin.AdminRoomTypeVO">
+		select room_type_code, room_type, room_name, room_mdsp, room_sdsp, room_area, room_general, room_bath, room_etc, room_price, img from room_type where room_type_code=#{param1}
+	</select>
+	<delete id="deleteRoomTypeRecord">
+		delete from room_type where room_type_code=#{param1}
+	</delete>
+	<update id="updateRoomTypeRecord"  parameterType="kr.co.crown.admin.AdminRoomTypeVO">
+		update room_type set room_type=#{room_type}, room_area=#{room_area}, room_name=#{room_name},
+		room_mdsp=#{room_mdsp}, room_sdsp=#{room_sdsp}, room_general=#{room_general}, room_bath=#{room_bath},
+		room_etc=#{room_etc}, room_price=#{room_price}, img=#{img} where room_type_code=#{room_type_code}
+	</update>
+	<select id="allSelectRoomTypeRecordAjax" resultType="kr.co.crown.admin.AdminRoomTypeVO">
+		select * from room_type
+	</select>
+	<select id="getRoomTypeRecordAjax" resultType="kr.co.crown.admin.AdminRoomTypeVO">
+		select room_type_code, room_type, room_name, img, room_area, room_mdsp, room_sdsp, room_general, room_bath, room_etc, room_price  
+		from room_type where room_type=#{parma1}
+	</select>
+	
+	
+	<select id="viewPageAllSelectRoomTypeRecord" resultType="kr.co.crown.admin.AdminRoomTypeVO" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO">
+		select * from room_type
+		<where>
+			<if test="rOptionsList != null">
+				room_type in
+				<foreach collection="rOptionsList" open="(" close=")" separator="," item="rOptionsList">
+					#{rOptionsList}
+				</foreach>
+			</if>
+		</where>
+		<choose>
+			<when test="rOrder != null and rOrder == 'room_low_price'">
+				order by room_price ASC
+			</when>
+			<when test="rOrder != null and rOrder == 'room_high_price'">
+				order by room_price DESC
+			</when>
+			<otherwise>
+				order by room_price ASC
+			</otherwise>
+		</choose>
+		
+	</select>
+	
+</mapper>

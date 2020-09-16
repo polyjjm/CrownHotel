@@ -1,0 +1,403 @@
+@charset "UTF-8";
+#mContainer{overflow:hidden;}
+.m_sub_container{width:100%;float:left;}
+.m_space_top{padding-top:30px;}
+.m_space_bottom{padding-bottom:30px;}
+.m_inner{width:1280px;margin:0 auto;overflow:hidden;}
+/* 메인 이미지 슬라이더 */
+#mSlideWrap{width:1920px;margin:0 auto;padding-bottom:60px;position:relative;}
+#mslideBox{width:100%; height:840px}
+#mslideBox img{width:100%;height:840px}
+#mSliderLeft, #mSliderRight{position:absolute;display:inline-block;
+cursor:pointer;padding:5px}
+#mSliderLeft{top:40%; left:10%;}
+#mSliderLeft:hover{background-color:#000;opacity:0.5 }
+#mSliderRight{top:40%; right:10%;}
+#mSliderRight:hover{background-color:#000;opacity:0.5 }
+#mSliderLeft img , #mSliderRight img
+{width:60px;height:100px;}
+
+#mSlideWrap .slick-slider .slick-dots 
+{position:absolute;bottom:18px;text-align: right;padding-right:26px;}
+#mSlideWrap .slick-slider .slick-dots li {display:inline-block;overflow:hidden;width:unset}
+#mSlideWrap .slick-dots li button:before {opacity:0}
+#mSlideWrap .slick-slider .slick-dots li.slick-active button {
+    background: #fff;
+    width: 50px;
+    border-radius: 10px;}
+#mSlideWrap .slick-slider .slick-dots li button {
+    transition: all .5s;
+    font-size: 0;
+    height: 12px;
+    width: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 0;
+    margin: 3px;
+    cursor: pointer; }
+#mSlideWrap .slick-dots li.slick-active button:before {
+    opacity: .75;
+    color: #fff;
+}
+
+
+/* 프로모션 */
+.mH2Title{font-size:42px;max-width:80%;margin:0 auto;
+padding-bottom:39px;font-weight: 400;text-align:center;}
+#mPMore{text-align:right;pading}
+.m_a_button{font-size: 16px;padding-right:14px;color:#1b65b3;}
+.m_promotion{display:inline-block;width:33%;
+vertical-align:top;padding:0 23px;}
+#mPWrap>div:nth-child(n+4){padding-top:70px;}
+.m_promotion_img{width:100%;height:215px;overflow:hidden;}
+.m_promotion_img>a>img{width:100%;height:215px;}
+.m_promotion_inside{padding:16px 15px 24px 15px;border-bottom:1px solid #d6d6d6;}
+.m_hotel{color:#666;font-size:16px;padding-bottom:5px;margin:0;}
+.m_promotion_title{color:#333;}
+.m_promotion_dsp{margin:0;font-size:16px;color:#666;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;padding:10px 0 15px 0;}
+
+.m_promotion_date{margin-top:7px;font-size:16px;}
+.m_promotion_date>strong{color:#666;margin-right: 4px;}
+.m_promotion_price{padding: 9px 15px 0 15px;text-align: right;min-height: 40px;position: relative;}
+.m_promotion_type{font-size:16px;position: absolute;top:19px;left:15px;line-height: 1.6;}
+.m_promotion_price_currency{margin-right:7px;font-size:16px;line-height: 1.6;}
+.m_promotion_price_num{font-size:26px;margin:0;padding:0;line-height: 1.6;}
+.scale{transform: scale(1); -webkit-transform: scale(1); transition: all 0.5s ease-in-out;}
+.scale:hover{transform: scale(1.1); -webkit-transform: scale(1.1)}
+
+/* 객실 */
+#mRoomContainer{width:100%}
+#mRoombox{width:70%;margin:0 auto}
+#mRoombox img{width:100%}
+#mRoomContent{width:100%;padding:20px;background-color:#ad9e87;}
+#mRoomImg{width:100%;height:500px;overflow:hidden;}
+.m_text{padding:10px 0 10px 0}
+.m_title{text-align: center;color:#fff;font-size: 30px;
+line-height:32px;padding-bottom:8px;margin:0}
+.m_desc{text-align:center;color:#fff;font-size:16px;margin:0}
+
+
+/* 위치 지도*/
+#mLocSection{overflow:hidden;}
+#mLocInfo{margin-top:88px;padding:30px 60px;}
+#mLocSectionLeft{float:left;width:35%;padding-right:45px;}
+#mLocSectionRight{width:65%;float:right;}
+#mLocText{text-align:left;font-size:16px;line-height:32px;
+margin-bottom:50px;padding:0 13px;color:#666;}
+#mLocWeather{padding:35px 40px;border-top:1px solid #999;}
+#mWeatherTitle{margin:0;margin-bottom:22px;font-size:22px;}
+
+
+#mWeatherImageBox{width:52px;display:inline-block;vertical-align:top;}
+#mWeatherImg{width:100%;height:auto;vertical-align:top;}
+#mWeatherText{font-size:18px;padding-left:16px;display: inline-block;}
+#mSpanTime{display:block;margin-bottom: 7px;}
+#mSpanWeather{display:block;}
+
+#mLocMap{width:65%;height:540px;}
+
+#mInfo{margin-top:88px;padding:30px 60px;background:#f5f5f5;}    
+#mInfo:after{content:'';display:block;clear:both;}
+
+#mInfoTime{width:20%;float:left;padding-right:40px;}
+#mInfoTime>p{font-size:18px;line-height:32px;margin:0}    
+#mInfoTel{width:30%;float:left;padding-right:40px;}
+#mInfoTel>p{font-size:18px;line-height:32px;margin:0}
+#mInfoRoom{width:20%;float:left;padding-right:40px;}
+#mInfoRoom>p{font-size:18px;line-height:32px;margin:0}
+#mInfoFacilities{width:30%;float:left;}
+#mInfoFacilities>p{font-size:18px;line-height:32px;margin:0}
+
+
+/*====== 예약 달력 객실 인원 =========*/
+.rsv_form_001{position: absolute;left:0;
+bottom: 120px;width:100%;padding:0 20px;}
+.rsv_reservation_bar{height:120px;}
+.rsv_001{width:1000px;margin: 0 auto;height:120px; background-color:#fff;}
+.rsv_search_001{position:relative;padding-top:20px;height:120px;
+background-color: #fff;}
+.rsv_search_item_001{position: relative;float:left;}
+.rsv_hotel_001{
+	width: 300px;
+    padding: 6px 10px 0 20px;
+    border-bottom: 0;
+}
+.hotel_title_001{
+	font-size: 13px;
+	color: #999;
+}
+.hotel_name_001{
+	padding-top: 7px;
+	font-size:22px;
+}
+.hotel_name_001 .xi-bank{color:#999}
+.rsv_date_001{width: 350px;padding: 6px 20px 0;
+border-bottom: 0;text-align: center;cursor:pointer;}
+.rsv_date_001:before {
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+width: 1px;
+height: 71px;
+background-color: #dcdcdc;
+content: "";
+}
+.rsv_person_001{width:250px;height:92px;padding: 6px 0 0 20px;
+    vertical-align:top;}
+.rsv_person_001:before {
+display: block;
+position: absolute;
+top: 0;
+left: 0;
+width: 1px;
+height: 71px;
+background-color: #dcdcdc;
+content: "";
+}
+.date_col_001{
+display: inline-block;
+position: relative;
+text-align: left;
+}
+.date_stay_001{
+	width: 120px;
+	display: inline-block;
+	vertical-align: top;
+	font-size:16px;
+}
+.date_stay_img{padding:10px 0 10px 0}
+.date_stay_001 img{width:32px;height:32px;}
+.date_title_001{
+	color: #999;
+	padding-right: 25px;
+    font-size: 13px;
+    background-size: 13px auto;
+    background:url('../img/ca.jpg') no-repeat right 0 top 50%;
+}
+.date_content_001{padding:10px 0 0 0}
+.date_day_001{
+font-size: 32px;
+display:inline-block;
+}
+.date_month_001{
+	display:inline-block;
+    font-size: 13px;
+    color: #666;
+    padding-left:10px
+}
+.person_col_001{
+	display: inline-block;
+}
+.person_col_001:nth-child(n+2) {
+    margin-left: 15px;
+}
+.person_text_001{
+	display:inline-block;
+	font-size: 13px;
+    line-height: 16px;
+    color: #999;
+}
+.person_num_001{
+	font-size: 32px;
+	display: block;
+	text-align: center;
+	padding-top: 5px;
+	cursor:pointer;
+}
+
+.rsv_btn_001{
+	position:absolute;
+	background-color: #1b65b3;
+    border-color: #1b65b3;
+    right: 20px;
+    width: 120px;
+    height: 71px;
+    color:#fff;
+    font-size: 18px;
+}
+/* 예약 달력 */
+.search_calendar_layer_001{
+	
+	position:absolute;
+	z-index: 100;
+	border: 1px solid #bbb;
+	text-align: left;
+    background-color: #fff;
+    padding-top: 32px;
+    bottom: 112px;
+    left: 0;
+    right: auto;
+}
+.search_calendar_close{
+	position: absolute;
+    top: 0;
+    right: 0;
+    cursor:pointer;
+    width:50px;
+    height:50px; 
+}
+
+/* 객실, 인원 선택창 */
+.search_person_layer_001{
+	display:none;
+	position:absolute;
+	z-index: 50;
+	bottom: 112px;
+    left: auto;
+    right: 0;
+    width: 547px;
+    height: 265px;
+    padding: 51px 23px 0 15px;
+    border: 1px solid #bbb;
+    text-align: left;
+    background-color: #fff;
+}
+.person_head_001{
+	position: relative;
+}
+.person_title_001{
+	display:block;
+	padding-left: 5px;
+	font-size: 16xp;
+	color:#333}
+.person_info_001{
+	position: absolute;
+    top: 1px;
+    right: 0;
+    
+}
+.person_info_item_001{
+	display: inline-block;
+    font-size: 12px;
+    color: #666;
+    position: relative;
+    
+}
+.person_info_item_001:nth-child(n+2){
+	padding-left: 11px;
+	margin-left: 10px;
+}
+
+.person_info_item_001:nth-child(n+2):before{
+	display: block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 1px;
+    height: 16px;
+    background-color: #ddd;
+    content: '';
+}
+.person_list_001{
+	margin-top: 11px;
+}
+.person_item_001:nth-child(n+2){
+    margin-top: 10px;
+}
+.person_subtitle_001{
+	position: relative;
+    width: 70px;
+    height: 44px;
+    text-align: center;
+    display: inline-block;
+    font-style: normal;
+}
+.person_subtitle_001>span{
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+	font-size: 15px;
+	transform: translate(-50%,-52%);
+}
+.person_count_001{
+	display: inline-block;
+    width: 204px;
+    margin: 0 0 0 10px;
+    vertical-align: top;
+}
+.c-counter_001{
+	padding: 0 43px;
+	position: relative;
+    display: block;
+}
+.c-counter_view_001{
+	height: 44px;
+    line-height: 42px;
+    font-size: 16px;
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    border: 1px solid #bbb;
+    background-color: #fff;
+    text-align: center;
+    pointer-events: none;
+}
+
+.c-counter_button_decrease{
+	width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid #bbb;
+    z-index: 5;
+    font-size: 18px;
+    background-color:#fff;
+    
+}
+.c-counter_button_decrease:focus{outline:none;}
+.c-counter_button_increase{
+	width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 1px solid #bbb;
+    z-index: 5;
+    font-size: 18px;
+    background-color:#fff;
+}
+.c-counter_button_increase:focus{outline:none}
+.c-counter_button_disable{
+	background-color: #f5f5f5 !important;
+	color:#000;
+}
+.c-counter_span_disable{
+	background-color: #f5f5f5 !important;
+    color: #666 !important;
+}
+.search_person_close{
+	border-color:#fff;
+	background-color:#fff;
+	width:34px;
+	height:34px;
+	position:absolute;
+	top:2px;
+	right:2px;
+	border: none;
+}
+.search_person_close:focus{outline:none}
+
+
+
+
+
+/*==========  달력  =========== */
+.daterangepicker th.month {
+    font-size: 16px;
+}
+.calendar-table th{
+	background-color: #ebf4f8;
+}
+.daterangepicker .calendar-table th{
+	font-size: 14px;
+}
+.daterangepicker td.disabled, .daterangepicker option.disabled{
+	color:red;
+} 
+.daterangepicker .calendar-table td{
+	font-size: 14px;
+}

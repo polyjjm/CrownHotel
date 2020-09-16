@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.admin.AdminRoomDAOImp">
+	<insert id="insertRoomRecord" parameterType="kr.co.crown.admin.AdminRoomVO">
+		insert into rooms(room_code, room_type_code, room_num, max_adult, max_child, bed) 
+		values(room_sq.nextval, #{room_type_code}, #{room_num}, #{max_adult}, #{max_child}, #{bed})
+	</insert>
+	<select id="allSelectRoomRecord" resultType="kr.co.crown.admin.AdminRoomVO" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO">
+		select * from
+			(select * from
+				(select room_code, room_type_code, room_num, max_adult, max_child, bed
+					from rooms
+					<if test="searchKey!=null and searchWord!=null">
+						where  ${searchKey} like '%' || #{searchWord} || '%'
+					</if>
+				order by room_code desc)
+			where rownum<![CDATA[<=]]> #{pageNum}*#{pageRecord} order by room_code asc)
+		where rownum <![CDATA[<=]]><if test="pageNum == totalPage">#{lastPageRecord}</if><if test="pageNum != totalPage">#{onePageCount}</if> order by room_code desc
+	</select>
+	<select id="getTotalRoomRecord" resultType="java.lang.Integer" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO">
+		select count(r.room_code) from rooms r JOIN room_type t ON r.room_type_code = t.room_type_code
+		<if test="searchKey!=null and searchWord!=null">
+			where ${searchKey} like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	<select id="selectRoomRecord" resultType="kr.co.crown.admin.AdminRoomVO">
+		select r.room_code, r.room_num, r.max_adult, r.max_child, r.bed, t.room_type_code, t.room_type, t.room_name, t.room_price 
+		from rooms r join room_type t 
+		on t.room_type_code = r.room_type_code 
+		where r.room_code=#{param1}
+	</select>
+	<delete id="deleteRoomRecord">
+		delete from rooms where room_code=#{param1}
+	</delete>
+	<update id="updateRoomRecord" parameterType="kr.co.crown.admin.AdminRoomVO">
+		update rooms set room_type_code=#{room_type_code}, room_num=#{room_num}, max_adult=#{max_adult}, max_child=#{max_child}, bed=#{bed} 
+		where room_code=#{room_code}
+	</update>
+	<select id="getRoomNumAjax" resultType="int">
+		select count(room_num) from rooms where room_num=#{param1}
+	</select>
+	<select id="allSelectRoomAndTypeRecord" resultType="kr.co.crown.admin.AdminRoomTypeVO" parameterType="kr.co.crown.admin.AdminRoomTypePaginVO">
+		select * from
+			(select * from
+				(select
+					 r.room_code,
+					 r.room_num, 
+					 r.room_type_code, 
+					 r.max_adult, 
+					 r.max_child, 
+					 r.bed,
+					 room_type, 
+					 t.room_name, 
+					 t.img, 
+					 t.room_mdsp, 
+					 t.room_sdsp, 
+					 t.room_area, 
+					 t.room_general, 
+					 t.room_bath, 
+					 t.room_etc, 
+					 t.room_price
+				from rooms r join room_type t on t.room_type_code = r.room_type_code 
+					<if test="searchKey!=null and searchWord!=null">
+						where ${searchKey} like '%' || #{searchWord} || '%'
+					</if>
+				order by r.room_code desc)
+			where rownum <![CDATA[<=]]> #{pageNum}*#{pageRecord} order by room_code asc)
+		where rownum <![CDATA[<=]]><if test="pageNum == totalPage">#{lastPageRecord}</if><if test="pageNum != totalPage">#{onePageCount}</if> order by room_code desc
+	</select>
+</mapper>

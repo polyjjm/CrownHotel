@@ -1,0 +1,213 @@
+@charset "UTF-8";
+header, footer{display:none}
+/*======== admin_main =============*/
+/* 메뉴 바*/
+.admin_main_container{margin:0;padding:0;position:relative;}
+
+.admin_menu_wrap{width:15%;height:100vh;float:left;position:fixed;background-color:#333}
+.admin_menu_box{width:100%;font-size:18px;color:#fff;overflow:hidden}
+.admin_menu_img{width:100%;padding:10px 5px;}
+.admin_menu_userid{width:50%;float:left;text-align:center;padding:10px 5px}
+.admin_menu_logout{width:50%;float:left;text-align:center;padding:10px 5px}
+.admin_menu_title{padding:14px 16px;text-align:center;cursor:pointer;}
+.admin_menu_content_box{overflow:hidden;display:none;background-color:#ddd;}
+.admin_menu_content_box>a{color:#333;padding:14px 16px;
+font-size:18px;text-align:center;width:100%;display:block}
+.admin_menu_content_box>a:hover{color:#333;background-color:#eee;}
+
+/* 컨텐츠 */
+.admin_content_wrap{width:85%;position:relative;left:15%;overflow:hidden;background-color:#ddd;}
+.admin_content_top{width:100%;background-color:#fff;padding:5px 20px;margin-bottom:10px;}
+.admin_content_box{width:100%;padding:10px 20px;float:left;}
+.admin_half_w{width:50%;}
+.admin_content_box:first-child{}
+.admin_content_form{width:100%;padding:10px;overflow:hidden;background-color:#fff;}
+.admin_content_title>h2{display:inline;}
+/* 버튼 */
+.admin_btn{display:inline-block;padding:5px 20px;min-width:100px;
+	background-color:#3E2B2C;color:#fff;border:none;text-align: center;
+	border-radius:5px;font-size:16px;cursor:pointer;}
+.admin_btn:link, .admin_btn:visited{color:#fff;}
+.admin_btn:hover{color:#fff;background-color:#67323c;}
+.admin_btn_box{padding:5px 50px 0px 0px; }
+.admin_btn_box>input{margin:0px 5px;}
+
+/*========= adminRoomTypeAdd 페이지 ==========*/
+.admin_input_frm{overflow:hidden }
+.admin_input_frm>div:first-child{width:25%;padding:0 10px;float:left}
+.admin_input_frm>select{width:40%;float:left}
+.admin_input_frm>input{width:40%;float:left}
+
+.room_type_option>div{display:inline-block;padding:2px 5px}
+.room_type_option label{margin:0;padding:0}
+
+.admin_img_box{width:300px;margin:20px 0 10px 0;position:relative;}
+.admin_img_box img{max-width:100%}
+.admin_btn_box{display:inline;float:right;}
+.close_room_type_img{position:absolute;z-index:10;color:#fff;top:10px;right:10px;cursor:pointer;}
+.close_room_type_img:hover{opacity:0.5}
+
+.admin_sub_img_title p{display:inline;}
+.admin_sub_img_title>div{height:30px;}
+.admin_plus_minus_box{display:inline-block;float:right;margin-right:50px;}
+.admin_plus_minus_box>span{cursor:pointer;}
+.admin_plus_minus_box img{width:30px;height:30px;}
+
+.admin_sub_img_warp{overflow:hidden}
+.admin_sub_img_box{width:33.33%;height:150px;float:left;padding:5px 5px;}
+.admin_sub_img_box>input{width:100%}
+.admin_sub_img{width:100%;padding-bottom: 10px;position:relative;}
+.admin_sub_img img{width:100%;height:100px }
+/* =================adminRoomList 페이지 ================== */
+#adminRoomList, #adminRoomList>li{margin:0; padding:0; list-style-type:none;}
+#adminRoomList>li{float:left;width:10%;height:50px;
+			  line-height:50px;text-align:center;
+			  border-bottom:1px solid gray}
+
+#adminRoomList>li:nth-of-type(8n-5){width:20%;}
+#adminRoomList>li:nth-of-type(8n-4){width:15%;}
+#adminRoomList>li:nth-of-type(8n-3){width:10%;}
+#adminRoomList>li:nth-of-type(8n-2){width:15%;}
+#adminRoomList>li:nth-of-type(8n-1){width:10%;}
+#adminRoomList>li:nth-of-type(8n){width:10%;}
+			/* 줄바꾸기 취소*/	 /*범위보다 크면 숨기기*/ /*넘치는 문자가 있을 때 ...으로 표시*/
+.wordCnt{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.container{overflow:hidden;height:auto;}
+
+
+/* =================adminRoomTypeList 페이지 ================== */
+#adminRoomTypeListTitle>th{text-align:center;}
+.admin_room_type_list>td img{width:150px;height:80px;}
+.admin_room_type_list>td {text-align:center; vertical-align:middle;cursor:pointer;}
+.admin_room_type_list>td>div{
+	width:400px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+
+.page_box{width:100%;text-align:center;padding:20px 0 20px 0}
+.pagination{justify-content:center}
+
+#adminModal{display:none;width:1000px;height:800px;top:10%;left:25%;
+position:fixed;z-index:200;background-color:#fff}
+#adminModalTop{width:100%;font-size:18px;background-color:#d6d6d6;
+padding:5px 10px;overflow:hidden}
+#adminModalClose{float:right;cursor:pointer;}
+#adminModalFrm{width:100%;height:700px;padding:10px 10px 10px 10px;
+overflow-y:auto;overflow-x:hidden;}
+#overLay{width:100%;height:100%;display:none;position:fixed;
+		background:#ddd; opacity:0.5;top:0px; left:0;z-index:150;}
+
+
+
+/* room type manage*/
+#listTitle{padding:30px 0 10px 0; font-size:16px; border-bottom:1px solid gray }
+#typeList>li{float:left;height:100px;width:10%;
+			  line-height:90px;text-align:center;
+			  border-bottom:1px solid gray; padding:5px 0 5px 0; }
+#typeList>li:nth-of-type(6n-4){width:30%}
+#typeList>li:nth-of-type(6n-3){width:15%}
+#typeList>li:nth-of-type(6n-1){width:25%;overflow:hidden;text-overflow:ellipsis}
+#typeList>li img{width:200px; height:80px;}
+/* room type add */
+.box{width:1000px;}
+.cont{resize:none;}
+
+
+.room_type_option label{cursor:pointer}
+.inpBox{width:200px;float:left}
+.inpBox>input{width:200px;}
+.inpBox>div{width:200px;height:200px;}
+.inpBox>div>img{width:200px;height:200px;}
+.inpBox>button{width:200px;}
+/* room type view */
+.img_wrap{float:left;padding:5px}
+.img_wrap>img{width:200px;}
+#btn_box{padding:20px; width:100%; float:left}
+
+
+/*====== 객실 리스트 =========*/
+#adminRoomListTable>thead>tr>th{color:#000;text-align:center;}
+#adminRoomListTbody>tr>td{text-align:center;}
+#adminRoomListTbody>tr{cursor:pointer;}
+#adminRoomListTbody>tr>td:nth-child(5)>span{float:right;}
+#adminRoomListTbody>tr>td:nth-child(5)>span>span:first-child{float:left;display:inline;}
+#adminRoomListTbody>tr>td:nth-child(5)>span>span:nth-of-type(2){float:left;padding-right:15px;}
+
+
+
+/*========예약 리스트 =============*/
+.adminRsvUserList{
+	margin-top:100px;
+	height:800px;
+	border: 2px solid gray;
+}
+.adminRsvUserList li:nth-child(n+7){
+	width:16.66%;
+	float:left;
+	margin-top:30px;
+	border-top:2px solid #f5f5f5;
+	font-size:17px;
+	vertical-align:middle;
+	
+}
+.adminRsvTitle{
+	width:16.66%;
+	float:left;
+	font-size:20px;
+	font-style: italic;
+	background-color: black;
+	color:white;
+	height:50px;
+
+}
+
+
+
+
+
+
+
+
+/* ================= adminPromotion 페이지 ================== */
+.pack_item_option>div{display:inline-block; padding:2px 5px}
+.pack_item_option label{margin:0;padding:0}
+.pack_item_option label{cursor:pointer}
+.pack_item_dsp>div{width:25%;padding:0 10px;float:left}
+#datepicker{margin-top:10px}
+/* 패키지 리스트 */
+.admin_package_list{overflow:hidden;}
+.admin_package_list>li{float:left;width:10%; height:54px;
+			  line-height:50px;text-align:center;
+			  border-bottom:1px solid gray}
+.admin_package_list>li:nth-of-type(6n-5){width:8%}
+.admin_package_list>li:nth-of-type(6n-4){width:17%}
+.admin_package_list>li:nth-of-type(6n-3){width:40%}
+.admin_package_list>li:nth-of-type(6n-2){width:12%}
+.admin_package_list>li:nth-of-type(6n-1){width:8%; overflow:hidden; text-overflow:ellipsis}
+.admin_package_list>li:nth-of-type(6n){width:15%}
+
+.page_box{width:100%;text-align:center;padding:20px 0 20px 0}
+.pagination{justify-content:center}
+
+#adminModal{display:none;width:1000px;height:800px;top:10%;left:25%;
+position:fixed;z-index:200;background-color:#fff}
+#adminModalTop{width:100%;font-size:18px;background-color:#d6d6d6;
+padding:5px 10px;overflow:hidden}
+#adminModalClose{float:right;cursor:pointer;}
+#adminModalFrm{width:100%;height:700px;padding:10px 10px 10px 10px;
+overflow-y:auto;overflow-x:hidden;}
+#overLay{width:100%;height:100%;display:none;position:fixed;
+		background:#ddd; opacity:0.5;top:0px; left:0;z-index:150;}
+.admin_pack_view{padding-left:10px; padding-right:10px}
+.word_cut_name{display:inline-block; max-height:54px; width:230px; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient: vertical; white-space: nowrap}
+.word_cut_dsp{display:inline-block; max-height:54px; width:90%; overflow:hidden; text-overflow:ellipsis; -webkit-line-clamp:1; -webkit-box-orient: vertical; white-space: nowrap}
+
+/* 이벤트 리스트 */
+.admin_event_list{overflow:hidden;}
+.admin_event_list>li{float:left;width:10%; height:54px;
+			  line-height:50px;text-align:center;
+			  border-bottom:1px solid gray}
+.admin_event_list>li:nth-of-type(5n-4){width:10%}
+.admin_event_list>li:nth-of-type(5n-3){width:25%}
+.admin_event_list>li:nth-of-type(5n-2){width:35%}
+.admin_event_list>li:nth-of-type(5n-1){width:15%}
+.admin_event_list>li:nth-of-type(5n){width:15%}

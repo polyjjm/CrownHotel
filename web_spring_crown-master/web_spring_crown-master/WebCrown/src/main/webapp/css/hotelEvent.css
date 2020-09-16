@@ -1,0 +1,45 @@
+@charset "UTF-8";
+#mainDiv{width:1280px; margin:0px auto; padding:0px}
+	
+#title{padding-top:14px; padding-bottom:30px}
+	
+#contentTitle{text-align:center}
+#contentTitle>h1{margin:0px; font-size:45px}
+	
+#searchPromotion{width:100%; height:64px; background-color:#f5f5f5; line-height:64px}
+#searchPromotion>b{padding-left:30px; font-size:18px}
+#searchForm{float:right; padding-right:30px; max-height:64px}
+#packSearchWord{width:300px; height:28px; margin-left:20px; right:-1px}
+#packSearch{width:86px; height:28px; padding-left:20px; padding-right:20px; background-color:#7b7b7b; color:#FFF; border:none; line-height:28px; float:right; margin-top:18px}
+	
+#sort{padding-top:40px; padding-right:20px; text-align:right}
+#sort>select{width:180px; height:36px; border:1px solid gray; padding-left:14px; padding-right:14px; font-size:16px}
+#sort>select>option{width:180px; height:36px}
+	
+.event_list{height:auto; padding-left:20px; padding-right:20px; margin-top:20px; overflow:hidden}
+ul.event_list, li.event{list-style:none}
+li.event{width:589px; height:530px; float:left; margin-bottom:60px}
+li.event:nth-child(2n-1){margin-right:30px}
+li.event:nth-child(2n){margin-left:30px}
+#img{width:100%; height:360px; overflow:hidden; position:relative}
+#img>strong{position:absolute; z-index:9000; float:left; text-align:center; background-color:#ce8f5e; color:white; width:100px; height:36px; line-height:36px; }
+#img>a>img{position:absolute; float:left; width:100%; height:360px; z-index:100}
+.scale{transform: scale(1); -webkit-transform: scale(1); transition: all 0.5s ease-in-out;}
+.scale:hover{transform: scale(1.1); -webkit-transform: scale(1.1)}
+
+#eventContent{padding:0px 11px}
+#eventInfo{margin-bottom:53px}
+#eventTitle{height:140px}
+#eventTitle>a>h2{text-decoration:none; color:#333333; margin-bottom:10px; margin-top:10px}
+#eventTitle>p{margin:0px}
+#eventDate{width:100%; padding-bottom:24px}
+#eventLink{float:right}
+#eventLink>a{text-decoration:none; color:#1B65B3}
+#eventLink>a:hover{text-decoration:none; color:#404486}
+#eventPrice{padding:5px 15px 0px; border-top:1px solid gray}
+#eventPrice>span{font-size:16px; margin-right:7px}
+#eventPrice>strong{font-size:26px}
+#eventPrice>a{font-size:18px; float:right; width:130px; height:40px; background-color:#555555; color:white; padding:0px 20px; line-height:40px; text-align:center; margin-top:10px}
+#eventPrice>a:hover{background-color:#1b65b3}
+
+#paging{margin-bottom:70px}

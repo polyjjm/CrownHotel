@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Intercepter 처리를 할 컨트롤러 목록을 생성하면  DispatcherServlet클래스에 매핑주소에 따라서  Intercepter해준다. 
+		  beans 시작태그에 context, mvc를 추가
+	-->	
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/memEditOk"/>
+			<mvc:mapping path="/changePwdOk"/>
+			<mvc:mapping path="/myPage"/>
+			<mvc:mapping path="/infoPwd"/>
+			<mvc:mapping path="/memEdit"/>
+			<mvc:mapping path="/changePwd"/>
+			<mvc:mapping path="/inquiry"/>
+			<mvc:mapping path="/reservation"/>
+			<mvc:mapping path="/memEditOk"/>
+			<mvc:mapping path="/changePwdOk"/>
+			<mvc:mapping path="/infoPwdOk"/>
+			<mvc:mapping path="/withDrawalOk"/>
+			<bean class="kr.co.crown.interceptor.LoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/admin/boardList"/>
+			<mvc:mapping path="/admin/boardView"/>
+			<mvc:mapping path="/adminMember"/>
+			<mvc:mapping path="/adminMemberView"/>
+			<mvc:mapping path="/adminMemberEdit"/>
+			<mvc:mapping path="/adminMemberEditOk"/>
+			<mvc:mapping path="/adminMemberDelete"/>
+			<mvc:mapping path="/adminMain"/>
+			<mvc:mapping path="/adminLogout"/>
+			<mvc:mapping path="/adminRoomList"/>
+			<mvc:mapping path="/adminRoomTypeAdd"/>
+			<mvc:mapping path="/adminRoomTypeAddOk"/>
+			<mvc:mapping path="/adminRoomTypeAddResult"/>
+			<mvc:mapping path="/adminRoomTypeList"/>
+			<mvc:mapping path="/adminRoomTypeView"/>
+			<mvc:mapping path="/adminPasswordChk"/>
+			<mvc:mapping path="/adminPasswordChkOk"/>
+			<mvc:mapping path="/adminRoomTypeDel"/>
+			<mvc:mapping path="/adminRoomTypeDelOk"/>
+			<mvc:mapping path="/adminRoomTypeEdit"/>
+			<mvc:mapping path="/adminRoomTypeEditOk"/>
+			<mvc:mapping path="/adminRoomTypeList"/>
+			<mvc:mapping path="/adminRoomTypeView"/>
+			<mvc:mapping path="/adminPasswordChk"/>
+			<mvc:mapping path="/adminPasswordChkOk"/>
+			<mvc:mapping path="/adminRsv"/>
+			<mvc:mapping path="/adminSalesView"/>
+			<bean class="kr.co.crown.interceptor.AdminLoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/adminRoomTypeDel"/>
+			<mvc:mapping path="/adminRoomTypeDelOk"/>
+			<mvc:mapping path="/adminRoomTypeEdit"/>
+			<mvc:mapping path="/adminRoomTypeEditOk"/>
+			<mvc:mapping path="/adminRoomTypeEditResult"/>	
+			<mvc:mapping path="/adminRoomEdit"/>
+			<mvc:mapping path="/adminRoomEditOk"/>
+			<mvc:mapping path="/adminRoomEditResult"/>
+			<bean class="kr.co.crown.interceptor.PasswordChkInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+</beans>

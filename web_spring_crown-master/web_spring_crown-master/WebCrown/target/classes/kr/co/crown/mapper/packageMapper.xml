@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.admin.AdminPackDAOImp">
+	<insert id="insertPackage" parameterType="kr.co.crown.admin.AdminPackVO">
+		insert into package(pack_code, room_type_code, pack_name, img, dsp, pack_start, pack_end, pack_option, sdsp, pack_price, pack_num)
+		values(package_sq.nextval, #{room_type_code}, #{pack_name}, #{img}, #{dsp}, #{pack_start}, #{pack_end}, #{pack_option}, #{sdsp}, #{pack_price}, #{pack_num})
+	</insert>
+	<select id="selectRoomNum" resultType="int">
+		select count(room_num) from rooms
+	</select>
+	<select id="selectChkRoomNum" resultType="int">
+		select count(a.room_code) from rsv a join package b on a.pack_code = b.pack_code where a.check_in>=TO_DATE(b.pack_start, 'YYYY-MM-DD') and a.check_out<![CDATA[<=]]>TO_DATE(b.pack_end, 'YYYY-MM-DD')
+	</select>
+	<select id="allSelectPack" resultType="kr.co.crown.admin.AdminPackVO" parameterType="kr.co.crown.admin.AdminPackPaginVO">
+		select * from
+			(select * from
+				(select pack_code, r.room_type, p.room_type_code, p.pack_name, p.img, p.dsp, to_char(p.pack_start, 'YY-MM-DD') pack_start,
+				 to_char(p.pack_end, 'YY-MM-DD') pack_end, p.pack_option, p.sdsp, p.pack_price, p. pack_num
+					from package p join room_type r on p.room_type_code=r.room_type_code
+					<where>
+						<if test="searchKey != null and startDate != null and startDate !='' and endDate != null and endDate !=''">
+		                    and ${searchKey} BETWEEN #{startDate} AND #{endDate}
+		                 </if>
+					</where>
+					order by pack_code desc)
+				where rownum <![CDATA[<=]]> #{pageNum}*#{pageRecord} order by pack_code asc) onePageCount
+			where rownum <![CDATA[<=]]>
+			<if test="pageNum == totalPage">#{lastPageRecord}</if>
+			<if test="pageNum != totalPage">#{onePageCount}</if> order by pack_code desc
+	</select>
+	<select id="getTotalPack" resultType="java.lang.Integer" parameterType="kr.co.crown.admin.AdminPackPaginVO">
+		select count(pack_code) from package
+		<if test="searchKey!=null and searchWord!=null">
+			where #{searchKey} like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	<select id="selectRoomTypeCode" resultType="Integer" parameterType="string">
+		select room_type_code from room_type where room_name = #{param1}
+	</select>
+	<select id="selectRoomTypeName" resultType="String">
+		select a.room_type from room_type a join package b on a.room_type_code=b.room_type_code where b.pack_code=#{param1}
+	</select>
+	<select id="selectPackage" resultType="kr.co.crown.admin.AdminPackVO">
+		select p.pack_code, t.room_type, t.room_name, p.room_type_code, p.pack_name, p.img, p.dsp, to_char(p.pack_start, 'YYYY-MM-DD') pack_start, to_char(p.pack_end, 'YYYY-MM-DD') pack_end, p.pack_option, p.sdsp, p.pack_price, p.pack_num from package p join room_type t on p.room_type_code=t.room_type_code where pack_code=#{param1}
+	</select>
+	<delete id="deletePack">
+		delete from package where pack_code=#{param1}
+	</delete>
+	<update id="updatePack" parameterType="kr.co.crown.admin.AdminPackVO">
+		update package set pack_code=#{pack_code}, room_type_code=#{room_type_code}, pack_name=#{pack_name}
+		<if test="img != null and img != ''">
+			, img=#{img}
+		</if>
+		, dsp=#{dsp}, pack_start=to_date(#{pack_start}, 'YYYY-MM-DD'), pack_end=to_date(#{pack_end}, 'YYYY-MM-DD'), pack_option=#{pack_option},
+		sdsp=#{sdsp}, pack_price=#{pack_price}, pack_num=#{pack_num} where pack_code=#{pack_code}
+	</update>
+</mapper>

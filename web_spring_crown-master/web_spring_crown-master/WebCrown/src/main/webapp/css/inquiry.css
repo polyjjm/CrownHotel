@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+.iqMain{width: 1280px; margin: 0 auto;}
+
+.iqfoBack{width: 1280px; margin-top: 20px; margin-left: 12px}
+
+	.iqfoBack a, .iqfoBack a:visited{color: #666}	
+	
+	.iqfoBack span{color: #b2b2b2}
+
+	#iqbNow{font-weight: bold;}
+
+.iqPwdTop{width: 1280px; }
+
+	.iqPwdTop div{float: left;}
+
+	.iqPwdMenu{z-index: -1; margin-top: 30px}
+		
+		.iqPwdMenu_title{width: 1280px;}
+			
+		.iqPwdMenu_title span{display:table; margin: 0 auto;
+							  font-size: 16px;
+    						  line-height: 28px;
+   							  padding-top: 20px;
+   							  color: #666;
+   							  padding-right: 0px;
+   							 }
+		
+		#iqTitle{width: 400px;
+				 font-size: 45px;
+				 font-weight: 400;
+				 font-family: inherit;
+				 color: #333333;
+				 position: relative;
+				 left: 85px
+				 }
+				 
+		#iqTitle2{width: 1200px;
+				  border-bottom: 1px solid #333333;
+				  margin-right: 50px;
+				  margin-top: 30px;}
+		
+#iqmenuList{border-bottom: 1px solid #e6e6e6; position: absolute; width: 1280px; background-color: #fff;
+			  display:none; z-index:900;}
+	
+.iqsubMenu{width: 300px;
+			 height: 200px;
+			 }
+			 
+.iqsubMenu a:link{font-size: 18px;
+    				line-height: 24px;
+   				    font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+   				    position: relative;
+   				    color: #333;
+    				text-decoration: none;
+    				content: '';
+   				    margin-left: 5px;
+    				margin-bottom: 2px;
+    				display: inline-block;
+    				padding: 15px 30px 5px 45px
+    				}		
+    				
+ .iqsubMenu a:visited{font-size: 18px;
+    				line-height: 24px;
+   				    font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+   				    position: relative;
+   				    color: #333;
+    				text-decoration: none;
+    				content: '';
+   				    margin-left: 5px;
+    				margin-bottom: 2px;
+    				display: inline-block;
+    				padding: 15px 30px 5px 45px
+    				}		   				
+		
+.iqPwd{width: 800px; margin: 100px auto; clear:both; padding-top: 70px}
+
+	.iqPwd span{font-size: 26px;
+			 	color: #333;
+   				font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+   			    margin-bottom: 10px;
+   			    font-weight: 400;
+   			    line-height: 1.1;
+   			    text-align: center;
+   			    margin-left: 313px
+				}
+    #iqPC{width: 800px;
+    	  height: 800px;
+    	  border-bottom: 1px solid #e6e6e6;
+    	  margin-top: 20px
+    	 }		
+	
+	#butWrap{margin-left: 235px; margin-top: 50px}
+	
+	#iqfoCancel{
+				min-width: 160px;
+			    padding: 0 20px;
+			    font-size: 18px;
+			    line-height: 50px;
+			    border: none;
+			    background-color: #555;
+			    color: #fff;
+			    margin-left: 10px;
+			    }
+    
+    #iqfoConfirm{
+			    min-width: 160px;
+			    padding: 0 20px;
+			    font-size: 18px;
+			    line-height: 50px;
+			    border-color: #ad9e87;
+			    background-color: #ad9e87;
+			    color: #fff;
+			    border: none
+			    }
+			    
+#iqPC_d>span{
+	   		 font-size: 18px;
+	   		 word-break: normal;
+    		 font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+    		 font-weight: 400;
+    		 line-height: 1.6;
+    		 position: relative;
+    		 left: -310px;
+			 }	
+    				
+.iqPC_dt{
+		 width: 395px;
+    	 background-color: #e6e6e6;
+   		 border-color: #bbb;
+    	 color: #666;
+    	 padding: 0 20px;
+    	 height: 44px;
+   		 font-size: 16px;
+   		 line-height: 44px;
+   		 text-align: left;
+   		 border: 1px solid #f5f5f5;
+   		 border-radius: 0;
+   		 vertical-align: middle;
+   		 font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+    	 margin-top: 10px;
+    	 margin-bottom: 10px;
+    	}
+    	
+.iqPC_dt2{
+		 width: 395px;
+    	 background-color: #F5F5F5;
+   		 border-color: #bbb;
+    	 color: #666;
+    	 padding: 0 20px;
+    	 height: 44px;
+   		 font-size: 16px;
+   		 line-height: 44px;
+   		 text-align: left;
+   		 border: 1px solid #f5f5f5;
+   		 border-radius: 0;
+   		 vertical-align: middle;
+   		 font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+    	 margin-top: 10px;
+    	 margin-bottom: 10px;
+    	}
+    	
+ #iqPC_db{
+ 		  background: white;
+   		  border: 2px solid #bbb;
+   		  width: 153px; height: 38px;
+   		  margin-top: 10px;
+ 		  margin-bottom: 10px
+ 		 }
+ 		 
+#iqPC2{width: 800px;
+       height: 180px;
+       margin-top: 70px
+	   }
+	   
+#iqPC2>span{font-size: 26px;
+			color: #333;
+   			font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+   			margin-bottom: 10px;
+   			font-weight: 400;
+   			line-height: 1.1;
+   			text-align: center;
+   			margin-left: 307px
+			}
+
+#iqPC_d2>span{
+	   		 font-size: 18px;
+	   		 word-break: normal;
+    		 font-family: "Open Sans Bold",Noto-lang-Bold,"Malgun Gothic",sans-serif;
+    		 font-weight: 400;
+    		 line-height: 1.6;
+    		 position: relative;
+    		 left: -310px;
+			 }	
+
+			 
+#iqPC_d2C{
+		 width: 150px;
+    	 background-color: #F5F5F5;
+   		 border-color: #bbb;
+    	 color: #666;
+    	 padding: 0 20px;
+    	 height: 44px;
+   		 font-size: 16px;
+   		 line-height: 44px;
+   		 text-align: left;
+   		 border: 1px solid #f5f5f5;
+   		 border-radius: 0;
+   		 vertical-align: middle;
+   		 font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+    	 margin-top: 10px;
+    	 margin-bottom: 10px;
+    	 
+		 }

@@ -1,0 +1,278 @@
+@charset "UTF-8";
+/*introduceMain*/
+/*메인 센터 바*/
+.introduce_home{color:#666;}
+#introduceBar{margin:20px 0 0 0}
+#introduceCenter{margin:0 auto;width:1280px;height:1200px;}
+/*크라운 호텔 소개 문구*/
+#introduceName{margin:50px 0 0 0;color:#333;font-size:45px;text-align:center;}
+#introduceMainText{margin-top:50px;color:#666;text-align:center;}
+/*이미지,텍스트 룸,다이닝*/
+#introduecImgRoom{width:630px;height:366px;margin-top:29px}
+.introduce_roomtext_first{margin-top:10px;font-size:22px;width:652px;font-weight:bold}
+.introduce_roomtext_second{margin-top:20px;font-size:18px;font-weight:bold}
+.introduce_roomtext_tree{margin-top:10px;color:#666}
+/*이미지,텍스트 다이닝*/
+#introduecImgDaing{width:630px;height:366px;margin-top:14px}
+#introduceDaning{margin:-616px 0 0 650px;}
+/*자세히 보기*/
+.introduce_look{font-color:#1b65b3;margin:40px 0 0 520px;}
+.introduce_a_tag{color:#1b65b3;border:none;font-size: 15px;text-decoration:none}
+/*하단 호텔정보*/
+#introduceHT{margin-top:50px}
+#introduceHotel{font-size:28px;font-weight:bold}
+#introduceHotelText{color: #666;margin:-35px 0 0 350px;}
+#introduceBtn{width:200px;height:44px;color:white;font-size:18px;background-color:#ad9e87;
+				border:none;position: relative;left:1050px;top:-40px; cursor:pointer}
+
+/*introduceTour*/	
+/*메인 센터 바*/
+.introduceTour_home{color:#666;}
+#introduceTourBar{margin:20px 0 0 0}
+#introduceTourCenter{margin:0 auto;width:1280px;height:100%;}			
+/*주요명소 텍스트 버튼(태그)*/
+#introduceTourName{margin:20px 0 0 0;color:#333;font-size:45px;text-align:center;cursor:pointer;}
+#introduceTourTagHistory{width:600px;height:60px;border:none;font-size: 18px;background-color: #555;cursor:pointer;}
+#introduceTourAtagculture{width:600px;height:60px;border:none;font-size: 18px;cursor:pointer;}
+/*메뉴 탭*/				
+.introduceTour_tab{list-style:none;margin:0;padding:0;overflow:hidden;}
+.introduceTour_tab li{float:left;width:403px;text-align:center;border:1px solid gray;}
+.introduceTour_tab li a{display: inline-block;color:#000;text-align:center;text-decoration:none;padding:14px 16px;font-size:17px;
+							transition:0.3s;}
+.tabcontent{display:none;padding:6px 12px;}
+ ul.introduceTour_tab li.current{background-color:#EFEFEF;color:#222;text-align:center;}
+.tabcontent.current{display: block;}
+#introduceTourHC{margin:30px 0 0 35px;}
+#introduceTourTab{width:1210px;margin:100px 0 0 35px;}
+/*이미지*/
+.introduceTour_img_left{width:590px;height:350px;margin-top:50px}
+.introduceTour_img_right{float:right;width:590px;height:350px;}
+.introduceTour_img_right3{float:right;width:590px;height:310px;}
+/*텍스트*/
+.introduceTour_subject_right{float:right;font-size:30px;margin:70px 450px 0 0;}
+.introduceTour_content_right{margin:-280px 0 0 650px;width:500px;color:#666;}
+.introduceTour_subject_left{font-size:30px;margin:70px 450px 0 0;}
+.introduceTour_content_left{width:500px;color:#666;}
+.introduceTour_subject_right2{float:right;font-size:30px;margin: 70px 355px 0 0;}
+
+/*역사더보기*/
+#introduceTourHistoryAdd{margin-top:70px;font-size:30px;}
+#introduceTourMaul{margin-top: 40px;font-size:26px;width:398px;height:108px;background-color: #EFEFEF;border:1px solid white}
+#introduceTourMuseum{font-size:26px;width:398px;height:108px;background-color: #EFEFEF;border:1px solid white;margin:-110px 0 0 420px;}
+.introduceTour_look{font-size:16px;margin-left:150px}
+.introduceTour_history_text{margin-left:150px}
+/*a태그 스타일*/
+#introduceTourAtagHistory{color:white}	
+#introduceTourAtagculture{color:black}
+.introduceTour_atag_look{color:#1b65b3}
+
+/*introduceTourCulture*/
+/*메인 센터 바*/
+.introduceTourCulture_home{color:#666;}
+#introduceTourCultureBar{margin:20px 0 0 0}
+#introduceTourCultureCenter{margin:0 auto;width:1280px;height:100%;}			
+/*주요명소 텍스트 버튼(태그)*/
+#introduceTourCultureName{margin:20px 0 0 0;color:#333;font-size:45px;text-align:center;cursor:pointer;}
+#introduceTourCultureTagHistory{width:600px;height:60px;border:none;font-size: 18px;cursor:pointer;}
+#introduceTourCultureAtagculture{width:600px;height:60px;border:none;background-color: #555;font-size: 18px;cursor:pointer;}
+/*a태그 스타일*/
+#introduceTourCultureAtagHistory{color:black}	
+#introduceTourCultureAtagculture{color:white}
+.introduceTourCulture_atag_look{color:#1b65b3}		
+/*메뉴 탭*/				
+.introduceTourCulture_tab{list-style:none;margin:0;padding:0;overflow:hidden;}
+.introduceTourCulture_tab li{float:left;width:403px;text-align:center;border:1px solid gray;}
+.introduceTourCulture_tab li a{display: inline-block;color:#000;text-align:center;text-decoration:none;padding:14px 16px;font-size:17px;
+							transition:0.3s;}
+.tabcontent{display:none;padding:6px 12px;}
+ ul.introduceTourCulture_tab li.current{background-color:#EFEFEF;color:#222;text-align:center;}
+.tabcontent.current{display: block;}
+#introduceTourCultureHC{margin:30px 0 0 35px;}
+#introduceTourCultureTab{width:1210px;margin:100px 0 0 35px;}
+/*이미지*/
+.introduceTourCulture_img_left{width:590px;height:350px;margin-top:50px}
+.introduceTourCulture_img_right{float:right;width:590px;height:350px;}
+.introduceTourCulture_img_right3{float:right;width:590px;height:310px;}
+/*텍스트*/
+.introduceTourCulture_subject_right{float:right;font-size:30px;margin:70px 450px 0 0;}
+.introduceTourCulture_content_right{margin:-280px 0 0 650px;width:500px;color:#666;}
+.introduceTourCulture_subject_left{font-size:30px;margin:70px 450px 0 0;}
+.introduceTourCulture_content_left{width:500px;color:#666;}
+.introduceTourCulture_subject_right2{float:right;font-size:30px;margin: 70px 355px 0 0;}
+.introduceTourCulture_subject_right1{float:right;font-size:30px;margin: 70px 300px 0 0;}
+.introduceTourCulture_subject_right3{float:right;font-size:30px;margin: 70px 420px 0 0;}
+.introduceTourCulture_subject_right4{float:right;font-size:30px;margin: 70px 480px 0 0;}
+/*역사더보기*/
+#introduceTourCultureHistoryAdd{margin-top:70px;font-size:30px;}
+#introduceTourCultureMaul{margin-top: 40px;font-size:26px;width:398px;height:108px;background-color: #EFEFEF;border:1px solid white}
+#introduceTourCultureMuseum{font-size:26px;width:398px;height:108px;background-color: #EFEFEF;border:1px solid white;margin:-110px 0 0 420px;}
+.introduceTourCulture_look{font-size:16px;margin-left:150px}
+.introduceTourCulture_history_text{margin-left:150px}
+
+/*introduceLocation*/
+/*메인 센터 바*/
+.introduceLocation_home{color:#666;}
+#introduceLocationBar{margin:20px 0 0 0}
+#introduceLocationCenter{margin:0 auto;width:1280px;height:100%;}
+/*위치 소개 문구*/
+#introduceLocationName{margin:30px 0 0 0;color:#333;font-size:45px;text-align:center;}
+/*지도*/
+#gMap{width:1280px;height:500px;margin:0 auto;margin-top:50px}
+/*연락처,팩스,위치*/
+#introduceLocationTelFax{border:1px solid #e7e7e7;width:1280px;height:130px;margin-top:70px}
+#introduceLocationCrownHotel{font-size:26px;padding:20px;}
+#introduceLocationLocation{font-size:18px;color:#666;margin:-50px 0 0 350px;}
+#introduceLocationTel{font-size:18px;margin:15px 0 0 350px;}
+#introduceLocationFax{font-size:18px;margin:-23px 0 0 750px;}
+/*도보*/
+#introduceLocationFoot{font-size:26px;margin-top:30px}
+/*도보 테이블*/
+#introduceLocationTableFoot{text-align:center;margin-top:40px;}
+.introduceLocationBoder1{border:1px solid gray;padding:15px}
+th{background-color:#F2F2F2}
+/*도보*/
+#introduceLocationCar{font-size:26px;margin-top:30px}
+/*자동차 테이블*/
+#introduceLocationTableCar{text-align:center;margin-top:40px;}
+.introduceLocationBoder1{border:1px solid gray;padding:15px}
+th{background-color:#F2F2F2}
+/*오시는길*/
+.introduceLocationWay{font-size:22px;cursor:pointer;}
+
+/*introduceNews*/
+/*메인 센터 바*/
+.introduceNews_home{color:#666;}
+#introduceNewsBar{margin:20px 0 0 0}
+#introduceNewsCenter{margin:0 auto;width:1280px;height:100%;}
+/*위치 소개 문구*/
+#introduceNewsName{margin:30px 0 0 0;color:#333;font-size:45px;text-align:center;}
+/*뉴스 공지사항*/
+/*news list*/
+#introduceNewsIdPwd{width:1280px;margin-top:50px;}
+.introduceNews_id{width:1280px;}
+
+/*adminBoardVuew*/
+.admin_board_list_title>th{text-align:center;}
+.admin_board_list_line>td{text-align:center;cursor: pointer;}
+.admin_board_search_frm{text-align:center;}
+#adminBoardViewUpdate>a{color:#fff}
+#adminBoardViewDelete>a{color:#fff}
+.introduceNews_li{background:#F2F2F2}
+#introduceNewsBoardList, #introduceNewsBoardList>li{margin:0;padding:0px;list-style-type:none}
+#introduceNewsBoardList>li{float:left;width:14%;height:50px;line-height:50px;
+				  border-bottom:1px solid #e6e6e6}
+#introduceNewsBoardList>li:nth-of-type(4n-2){width:50%}
+
+
+
+/*adminPointList*/
+#introduceNewsBoardList1>li{float:left;width:11%;height:50px;line-height:50px;
+				  border-bottom:1px solid #e6e6e6}
+#introduceNewsBoardList1>li:nth-of-type(5n-2){width:50%}
+	
+/*		줄바꾸기 취소			 범위보다 크면 숨기기	넘치는 문자가 있을떄 ..으로 표시*/
+.wordCut{white-space:nowrap; overflow:hidden; text-overflow:ellipsis}	
+/*boardList*/		  
+#introduceNewsButtonSc{border:none;width:86px;height:36px;background:#7B7B7B;color:#FFFF}
+#searchWord{height:36px;}
+#introduceNewsSelect{height:36px;width:120px;}
+
+/*introduceNewsView*/
+/*메인 센터 바*/
+.introduceNewsView_home{color:#666;}
+#introduceNewsViewBar{margin:20px 0 0 0}
+#introduceNewsViewCenter{margin:0 auto;width:1280px;height:100%;}
+/*위치 소개 문구*/
+#introduceNewsViewName{margin:30px 150px 0 0;color:#333;font-size:45px;text-align:center;}
+#introduceNewsViewBoardList{margin-top:50px}
+#introduceNewsViewBoardList>li{float:left;width:45%;height:50px;line-height:50px;
+				  border-bottom:1px solid gray;border-top:1px solid gray}
+/*메인 센터(뷰 내용)*/
+#introduceNewsViewMain{overflow:auto;}/*footer가 겹칠때*/
+#introduceNewsViewLiSubject{padding-left:50px}
+#introduceNewsViewLiDate{padding-left:500px}
+#introduceNewsViewContent{margin:120px 0 0 50px;}
+/*hr*/
+#introduceNewsViewHr{background-color:gray;width:1270px;margin-right:200px}	
+/*목록 버튼*/
+#introduceNewsViewBtn{width:160px;height:50px;background-color:white;border:1px solid gray;
+						margin-left:550px;cursor:pointer;}
+
+
+    
+/*adminMemberView*/
+#adminMemberViewRemake{
+	display: inline-block;
+	padding: 5px 20px;
+    background-color: #3E2B2C;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 100px;}
+#adminMemberViewDel{
+	display: inline-block;
+	padding: 5px 20px;
+    background-color: #3E2B2C;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 100px;}
+#adminMemberViewPoint{display: inline-block;
+    padding: 5px 20px;
+    background-color: #3E2B2C;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 100px;}
+#adminMemberViewPoint>a{color:#fff}  
+  
+  
+  
+  
+/*adminBoardEdit*/
+#adminBoardEdit{background-color:#fff;}
+#adminBoardEditSubject{margin-left:50px;
+    width: 500px;
+    padding-top: 10px;}
+#adminBoardEditContent{margin-left:85px;}
+#adminBoardEditBtn{display: inline-block;
+    padding: 5px 20px;
+    min-width: 100px;
+    background-color: #3E2B2C;
+    color: #fff;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 450px;}
+#adminBoardEditContentSp{position: relative;
+    top: -60px;right:50px}
+    
+    
+   
+/*adminMemberEdit*/
+#adminMemberEditWrap{border:1px solid gray;width:700px}
+#adminMemberEdit{background-color:#fff;
+margin-left: 50px;
+    width: 500px;
+    padding-top: 10px;} 
+.adminMemberEdit_input1{margin-left:50px} 
+.adminMemberEdit_input2{margin-left:35px}
+.adminMemberEdit_input3{margin-left:20px}
+#adminMemberEditBtn{
+	padding: 5px 20px;
+    background-color: #3E2B2C;
+    color: #fff;
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 400px}  
+    
+             			
+						

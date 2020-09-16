@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.crown.rsv.RsvDAOImp">
+
+	<select id="dateList" resultType="string">
+
+		SELECT TO_CHAR(TO_DATE(#{param1}) + LEVEL - 1, 'YYYYMMDD') AS
+		checkList
+		FROM DUAL
+		CONNECT BY LEVEL <![CDATA[<=]]>
+		(TO_DATE(#{param2}) - TO_DATE(#{param1}) + 1)
+
+	</select>
+
+	<select id="checkList" resultType="Integer"
+		parameterType="string">
+		select room_code from rsv where (
+		<foreach collection="array" item="param1" index="index"
+			separator="or">
+			check_in = #{param1} or check_out= #{param1}
+
+		</foreach>
+		)
+	</select>
+
+
+	<select id="roomTypeCode" resultType="Integer"
+		parameterType="Integer">
+		select DISTINCT room_type_code from rooms where not(
+
+		<foreach collection="array" item="param1" index="index"
+			separator="or">
+			room_code=${param1}
+		</foreach>
+
+		)
+
+
+	</select>
+
+
+	<select id="allRoomType"
+		resultType="kr.co.crown.rsv.room_typeVO">
+		select
+		room_type_code,
+		room_type,
+		room_name,
+		room_name,
+		img,
+		room_mdsp,
+		room_area,
+		room_bath,
+		room_general,
+		room_etc,
+		room_price
+		from
+		room_type
+
+	</select>
+
+	<select id="RoomType" resultType="kr.co.crown.rsv.room_typeVO">
+
+		select
+		room_type_code,
+		room_type,
+		room_name,
+		room_name,
+		img,
+		room_mdsp,
+		room_area,
+		room_bath,
+		room_general,
+		room_etc,
+		room_price
+		from
+		room_type
+		where
+		<foreach collection="array" item="param1" index="index"
+			separator="or">
+			room_type_code =${param1}
+		</foreach>
+
+	</select>
+
+
+	<select id="RoomDetail" resultType="string"
+		parameterType="string">
+		SELECT room_num FROM rooms where not (
+		<foreach collection="param1" item="param1" index="index"
+			separator="or">
+			room_code= ${param1}
+		</foreach>
+		)
+		and rownum <![CDATA[<=]]>${param2}
+		and room_type_code=${param3}
+	</select>
+
+	<select id="packCount"
+		resultType="kr.co.crown.rsv.RsvPackInfoVO" parameterType="Integer">
+
+		<foreach collection="param1" item="param1">
+			select pack_code,
+			count(*)
+			from rsv where pack_code =${param1} group by pack_code;
+		</foreach>
+
+
+	</select>
+
+
+	<select id="pack" resultType="kr.co.crown.rsv.RsvPackInfoVO" parameterType="string">
+
+		select pack_code,pack_name,pack_start,sdsp,dsp,img,pack_end,pack_price,pack_option from package WHERE(pack_start  <![CDATA[<=]]>
+		#{param1} and pack_end >= #{param2}) and (pack_start  <![CDATA[<=]]>
+		#{param1} and pack_end >= #{param2})
+		and room_type_code= ${param3} and
+		pack_num >${param4}
+
+	
+	<if test="param5 == 1">
+		
+		 order by pack_price desc
+	</if>
+	<if test="param5 == 0">
+		order by pack_price asc
+	
+	</if>
+	
+	
+	
+	
+	</select>
+	
+	
+	<select id="packList" resultType="kr.co.crown.rsv.RsvPackInfoVO" parameterType="string">
+		
+		select pack_code,pack_name,to_char(pack_start,'YYYY-MM-DD') pack_start,sdsp,dsp,img,to_char(pack_end,'YYYY-MM-DD') pack_end,pack_price,pack_option from package WHERE(pack_start  <![CDATA[<=]]>
+		#{param1} and pack_end >= #{param2}) and (pack_start  <![CDATA[<=]]>
+		#{param1} and pack_end >= #{param2})
+		and pack_num >${param3}
+	
+	
+	</select>
+	
+	
+	
+	
+	
+	<select id="normal_pack"
+		resultType="kr.co.crown.rsv.RsvRoomInfoVO">
+		select room_price,room_name,img from room_type where
+		room_type_code =${param1}
+
+	</select>
+
+	<select id="pack_dsp" resultType="kr.co.crown.rsv.packSpareadVO"
+		parameterType="string">
+		select pack_name,pack_start,sdsp,dsp,img,pack_end,pack_price from
+		package where
+		pack_code= ${param1}
+
+	</select>
+	
+	<select id="normalRoomType" resultType="kr.co.crown.rsv.RsvRoomInfoVO">
+	
+	select a.img,a.room_name,a.room_price,a.room_type_code from room_type a
+	where a.room_type_code in (select b.room_type_code from package b where pack_code = ${param1})
+	
+	</select>
+
+
+	<select id="pack_roomdsp"
+		resultType="kr.co.crown.rsv.room_dspVO">
+
+		select room_name,room_type_code,room_price from room_type
+		where
+		room_type_code=${param1}
+
+	</select>
+
+
+	<select id="RsvMemberInfo"
+		resultType="kr.co.crown.rsv.RsvMemberInfoVO">
+
+		SELECT
+		user_name,
+		user_email,
+		user_tel,
+		point
+		FROM
+		member
+		WHERE
+		user_id = #{param1}
+	</select>
+
+
+
+	<insert id="rsvInsert" parameterType="kr.co.crown.rsv.RsvInsertVO">
+		<if test="user_id != null">
+			INSERT INTO
+			rsv(room_rsv_code,
+			<if test="pack_code != null">pack_code,</if>
+			user_id,room_code,room_people,check_in,check_out,require,breakfast_adult,price)
+			values(rsv_SQ.nextval,
+			<if test="pack_code != null ">#{pack_code,jdbcType=INTEGER},</if>
+			#{user_id},#{roomNumber},#{room_people},#{checkIn},#{checkOut},#{require,jdbcType=VARCHAR},#{breakfast_adult,
+			jdbcType=INTEGER},#{price})
+
+		</if>
+		<if test="user_id == null">
+			INSERT INTO
+			rsv(room_rsv_code,
+			<if test="pack_code != null">pack_code,</if>
+			guest_code,room_code,room_people,check_in,check_out,require,breakfast_adult,price)
+			values(rsv_SQ.nextval,
+			<if test="pack_code != null ">#{pack_code,jdbcType=INTEGER},</if>
+			#{guest_code},#{roomNumber},#{room_people},#{checkIn},#{checkOut},#{require,jdbcType=VARCHAR},#{breakfast_adult,
+			jdbcType=INTEGER},#{price})
+
+		</if>
+		<selectKey keyProperty="room_rsv_code" resultType="integer"
+			order="AFTER">
+			SELECT rsv_SQ.currval FROM dual
+		</selectKey>
+
+	</insert>
+
+	<update id="packUpdate" parameterType="int">
+
+		update package set
+		
+		
+		pack_num =pack_num - ${param1} where pack_code=${param2} and pack_num != 0 
+	</update>
+
+
+	<insert id="payMentInsert"
+		parameterType="kr.co.crown.rsv.RsvPayMentVO">
+
+		insert into payment(
+		payment_code,
+		room_rsv_code,
+		payment_order_number,
+		pay_date,
+		payment,
+		status,
+		name
+
+		)
+		values(
+		<if test="payment_code == null">
+			payment_sq.nextval+1,
+		</if>
+		<if test="payment_code != null">
+			${payment_code},
+
+		</if>
+		${room_rsv_code},
+		#{payment_order_number},
+		sysdate,
+		${payment},
+		#{status},
+		#{name}
+
+
+		)
+
+
+		<selectKey keyProperty="payment_code" resultType="integer"
+			order="AFTER">
+			SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME =
+			'PAYMENT_SQ'
+		</selectKey>
+
+	</insert>
+
+
+	<select id="selectRoomCode" resultType="Integer"
+		parameterType="string">
+		select room_code from rooms where room_num = #{param1}
+	</select>
+
+	<select id="payMentSelect"
+		resultType="integer" parameterType="string">
+
+		select room_rsv_code from payment where PAYMENT_ORDER_NUMBER = #{param1} and name= #{param2}
+	</select>
+
+	<!--  로그인 페이지 예약목록 확인 -->
+	<select id="RsvSelect" resultType="kr.co.crown.rsv.RsvSelectVO" parameterType="kr.co.crown.rsv.RsvPayMentVO">
+
+		select 
+			guest_name,
+			room_num,
+			to_char(check_in,'YYYY-MM-DD') check_in,
+			to_char(check_out,'YYYY-MM-DD') check_out,
+			room_people
+			from
+			rsv rsv inner join guest guest on rsv.guest_code = guest.guest_code inner join rooms rooms on rsv.room_code =rooms.room_code
+			where
+			guest.guest_name =#{param2} and
+			<foreach collection="param1" item="param1" separator="or">
+			rsv.room_rsv_code = ${param1} 
+			</foreach>
+	</select>
+	
+	
+
+	
+
+	<insert id="guestInfo"
+		parameterType="kr.co.crown.rsv.RsvTotalVO">
+
+
+		insert into guest(guest_code,guest_name,email,guest_tel)
+		values(guest_sq.nextval,#{guestName},#{guestEmail},#{guestTel})
+		<selectKey keyProperty="guest_code" resultType="integer"
+			order="AFTER">
+			SELECT guest_sq.currval FROM dual
+		</selectKey>
+	</insert>
+
+	<insert id="savePoint"
+		parameterType="kr.co.crown.rsv.RsvTotalVO">
+		insert into
+		point(point_code,user_id,point,point_date,point_name)
+		values(point_save_sq.nextval,#{param1},${param2},sysdate,#{param3})
+
+	</insert>
+
+
+	<insert id="usePoint" parameterType="kr.co.crown.rsv.RsvTotalVO">
+		insert into
+		point(point_code,user_id,point,point_date,point_name)
+		values(point_save_sq.nextval,#{param1},${param2},sysdate,#{param3})
+
+	</insert>
+
+	<select id="pointSelect" resultType="int" parameterType="string">
+		select
+		DISTINCT sum(point) over() from point where user_id =#{param1}
+
+	</select>
+	<update id="updatePoint"
+		parameterType="kr.co.crown.rsv.RsvTotalVO">
+
+		update member set point =#{param1} where user_id =
+		#{param2}
+	</update>
+	
+	
+	
+
+
+</mapper>

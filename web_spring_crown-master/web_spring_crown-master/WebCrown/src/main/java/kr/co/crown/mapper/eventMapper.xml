@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.admin.AdminEventDAOImp">
+	<insert id="insertEvent" parameterType="kr.co.crown.admin.AdminEventVO">
+		insert into event(event_code, event_name, event_mdsp, event_sdsp, event_start, event_end, img)
+		values(event_sq.nextval, #{event_name}, #{event_mdsp}, #{event_sdsp}, #{event_start}, #{event_end}, #{img})
+	</insert>
+	<select id="allSelectEvent" resultType="kr.co.crown.admin.AdminEventVO" parameterType="kr.co.crown.admin.AdminEventPaginVO">
+		select * from
+			(select * from
+				(select event_code, event_name, event_mdsp, event_sdsp, to_char(event_start, 'YY-MM-DD') event_start,
+				 to_char(event_end, 'YY-MM-DD') event_end, img from event 
+				<where>
+					<if test="searchKey != null and startDate != null and startDate !='' and endDate != null and endDate !=''">
+		            	and ${searchKey} BETWEEN #{startDate} AND #{endDate}
+		            </if>
+				</where>
+					order by event_code desc)
+				where rownum <![CDATA[<=]]> #{pageNum}*#{pageRecord} order by event_code asc) onePageCount
+			where rownum <![CDATA[<=]]><if test="pageNum == totalPage">#{lastPageRecord}</if><if test="pageNum != totalPage">#{onePageCount}</if> order by event_code desc
+	</select>
+	<select id="getTotalEvent" resultType="java.lang.Integer" parameterType="kr.co.crown.admin.AdminEventPaginVO">
+		select count(event_code) from event
+		<if test="searchKey!=null and searchWord!=null">
+			where ${searchKey} like '%' || #{searchWord} || '%'
+		</if>
+	</select>
+	<select id="selectEvent" resultType="kr.co.crown.admin.AdminEventVO">
+		select event_code, event_name, event_mdsp, event_sdsp, to_char(event_start, 'YYYY-MM-DD')event_start, to_char(event_end, 'YYYY-MM-DD')event_end, img from event where event_code=#{param1}
+	</select>
+	<update id="updateEvent" parameterType="kr.co.crown.admin.AdminEventVO">
+		update event set event_code=#{event_code}, event_name=#{event_name}, event_mdsp=#{event_mdsp},
+		event_sdsp=#{event_sdsp}, event_start=#{event_start}, event_end=#{event_end}
+		<if test="img != null and img != ''">
+			, img=#{img}
+		</if>
+		where event_code=#{event_code}
+	</update>
+	<delete id="deleteEvent">
+		delete from event where event_code=#{param1}
+	</delete>
+</mapper>

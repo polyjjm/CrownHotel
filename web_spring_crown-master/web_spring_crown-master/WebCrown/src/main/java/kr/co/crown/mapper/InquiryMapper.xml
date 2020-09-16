@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.mypage.InquiryDAOImp">
+	<insert id="inquiryInsert" parameterType="kr.co.crown.mypage.InquiryVO">
+		insert into inquiry(iq_code, iq_type, iq_title, iq_content, iq_user_name, iq_user_email, iq_user_tel, iq_sysdate, iq_answer_status) 
+		values(iq_code_inc.nextval, #{iq_type}, #{iq_title}, #{iq_content}, #{iq_user_name}, #{iq_user_email}, #{iq_user_tel}, sysdate, #{iq_answer_status})
+	</insert>
+</mapper>

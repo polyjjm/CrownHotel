@@ -1,0 +1,274 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page session="true" %>
+<%
+	String ctx = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>크라운 호텔</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="<%=ctx %>/api/owl.carousel.min.css">
+<link rel="stylesheet" href="<%=ctx %>/api/daterangepicker.min.css" type="text/css" />
+<link rel="stylesheet" href="<%=ctx %>/css/slick.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/slick-theme.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/inc.css" type="text/css" />
+<link rel="stylesheet" href="<%=ctx %>/css/home.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/myPage.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/hotelPackage.css" type="text/css" />
+<link rel="stylesheet" href="<%=ctx %>/css/member.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/room.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/rsv.css" type="text/css" />
+<link rel="stylesheet" href="<%=ctx %>/css/introduce.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/withDrawal.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/changePwd.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/inquiry.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/memEdit.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/reservation.css" type="text/css"/>
+<link rel="stylesheet" href="<%=ctx %>/css/infoPwd.css" type="text/css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script async defer src ="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdpFt44gVyyLaVVx9o9gHNo11umONL3Uw&callback=initMap"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="<%=ctx %>/api/moment.min.js"></script>
+<script src="<%=ctx %>/api/jquery.daterangepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script type="text/javascript" src="<%=ctx %>/js/slick.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js "></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js" ></script>
+<script type="text/javascript" src="<%=ctx%>/ckeditor/ckeditor.js"></script>
+<script src="<%=ctx %>/js/inc.js"></script>
+<script src="<%=ctx %>/js/home.js"></script>
+<script src="<%=ctx %>/js/myPage.js"></script>
+<script src="<%=ctx %>/js/infoPwd.js"></script>
+<script src="<%=ctx %>/js/inquiry.js"></script>
+<script src="<%=ctx %>/js/memEdit.js"></script>
+<script src="<%=ctx %>/js/reservation.js"></script>
+<script src="<%=ctx %>/js/changePwd.js"></script>
+<script src="<%=ctx %>/js/rsv.js"></script>
+<script src="<%=ctx %>/js/room.js"></script>
+<script src="<%=ctx %>/js/admin.js"></script>
+<script src="<%=ctx %>/js/member.js"></script>
+<script src="<%=ctx %>/js/introduce.js"></script>
+<script src="<%=ctx %>/api/owl.carousel.min.js"></script>
+</head>
+<body>
+<header>
+	<div id="header">
+		<!-- 상단 -->
+		<div id="headerTop">
+			<div class="h_content" id="hTop">
+				<!-- 상단메뉴 -->
+				<div id="hItemWrap">
+					<ul id="hItems">
+	                  <c:if test="${logStatus==null || logStatus=='' }">
+	                  <li><a href="<%=ctx%>/rsvCodeChk">예약조회</a></li>
+	                  </c:if>
+	                  <c:if test="${logStatus==null || logStatus==''}">
+		                  <li><a href="<%=ctx%>/loginForm">로그인</a></li>
+		                  <li><a href="<%=ctx%>/loginMain">회원가입</a></li>
+		                  <li><a href="<%=ctx%>/loginForm">멤버쉽</a></li>
+		                  <li><a href="<%=ctx%>/loginForm">마이페이지</a></li>
+	                  </c:if>
+	                  <c:if test="${logStatus !=null && logStatus !=''}">
+	                  	  
+	                  	  <li>${user_name}님<a href="<%=ctx %>/logout">&nbsp;&nbsp;로그아웃</a></li>
+	                      
+	                      <c:if test="${user_id!='admin'}">
+	                      	<li><a href="<%=ctx%>/myPage">멤버쉽</a></li>
+	                      </c:if>
+	                      <c:if test="${user_id!='admin' }">
+	                      	<li><a href="<%=ctx%>/myPage">마이페이지</a></li>   
+	                  	  </c:if>
+	                  </c:if>
+               		</ul>
+				</div>
+				<!-- 로고 -->
+				<div id="hLogo"><a href="<%=ctx%>/"><img src="<%=ctx%>/img/logo.png"></a></div>
+			</div>
+		</div>
+		
+		<!-- 하단 -->
+		<div id="headerBottom">
+			<div class="h_content" id="hMenu">
+				<ul>
+					<li><a href="<%=ctx%>/introduce">크라운 호텔 소개</a>
+					<!-- 매뉴 버튼 누르면 생성되는  div -->
+					<!-- 서브메뉴 -->
+					<div class="h_menulist_wrap">
+						<div class="h_menulist_box">
+							<!-- 서브메뉴 제목 -->
+							<div class="h_menulist_top">
+								<div class="h_submenu_title">
+									<a href="<%=ctx%>/introduce">크라운 호텔 소개</a>
+									<a href="<%=ctx%>/introduce"><i class="xi-play-circle-o"></i></a>
+								</div>
+								<div class="h_rev_link">
+									<span class="h_rev_img"><img src="<%=ctx%>/img/bed.png"/></span>
+									<c:if test="${user_id==null || user_id!='admin' }">
+									<span class="h_rev_btn"><a href="<%=ctx%>/rsv">객실예약</a></span>
+									</c:if>
+								</div>
+							</div>
+							<!-- 서브메뉴 상세메뉴 -->
+							<div class="h_menulist_content">
+								<div class="h_menu_box">
+									<ul class="h_text_wrap">
+										<li><a href="<%=ctx%>/introduce">크라운 호텔 소개</a></li>
+										<li><a href="<%=ctx%>/introduceLocation">크라운 호텔 위치</a></li>
+									</ul>
+								</div>
+								<div class="h_menu_box">
+									<ul class="h_text_wrap">
+										<li><a href="<%=ctx%>/introduceTour">주요명소</a></li>
+									</ul>
+								</div>
+								<div class="h_menu_box">
+									<ul class="h_text_wrap">
+										<li><a href="<%=ctx%>/boardList">뉴스</a></li>
+									</ul>
+								</div>
+								<!-- 이미지 -->
+								<div class="h_menu_img">
+									<img src="<%=ctx%>/img/59.jpg"/>
+								</div>
+							</div><!-- 서브메뉴 상세메뉴 -->
+						</div>
+					</div>
+					</li>
+					
+					<li><a href="<%=ctx%>/roomMain">객실</a>
+						<!-- 서브메뉴 -->
+						<div class="h_menulist_wrap">
+							<div class="h_menulist_box">
+								<!-- 서브메뉴 제목 -->
+								<div class="h_menulist_top">
+									<div class="h_submenu_title">
+										<a href="<%=ctx%>/roomMain">객실</a>
+										<a href="<%=ctx%>/roomMain"><i class="xi-play-circle-o"></i></a>
+									</div>
+									<div class="h_rev_link">
+										<span class="h_rev_img"><img src="<%=ctx%>/img/bed.png"/></span>
+										<c:if test="${user_id==null || user_id!='admin' }">
+										<span class="h_rev_btn"><a href="<%=ctx%>/rsv">객실예약</a></span>
+										</c:if>
+									</div>
+								</div>
+								<!-- 서브메뉴 상세메뉴 -->
+								<div class="h_menulist_content">
+									<div class="h_menu_box">
+										<ul class="h_text_wrap" id="roomTypeStandard">
+											<li>스탠다드</li>
+										</ul>
+									</div>
+									<div class="h_menu_box">
+										<ul class="h_text_wrap" id="roomTypeClub">
+											<li>클럽 플로어</li>
+										</ul>
+									</div>
+									<div class="h_menu_box">
+										<ul class="h_text_wrap" id="roomTypeSuit">
+											<li>스위트</li>
+										</ul>
+									</div>
+									<!-- 이미지 -->
+									<div class="h_menu_img">
+										<a href="<%=ctx%>/roomMain"><img src="<%=ctx%>/img/room_d.jpg"/></a>
+									</div>
+								</div><!-- 서브메뉴 상세메뉴 -->
+							</div>
+						</div>
+					</li><!-- 객실 -->
+					
+					<li><a href="<%=ctx%>/hotelPackage">프로모션</a>
+						<!-- 서브메뉴 -->
+						<div class="h_menulist_wrap">
+							<div class="h_menulist_box">
+								<!-- 서브메뉴 제목 -->
+								<div class="h_menulist_top">
+									<div class="h_submenu_title">
+										<a href="<%=ctx%>/hotelPackage">프로모션</a>
+										<a href="<%=ctx%>/hotelPackage"><i class="xi-play-circle-o"></i></a>
+									</div>
+									<div class="h_rev_link">
+										<span class="h_rev_img"><img src="<%=ctx%>/img/bed.png"/></span>
+										<c:if test="${user_id==null || user_id!='admin' }">
+										<span class="h_rev_btn"><a href="<%=ctx%>/rsv">객실예약</a></span>
+										</c:if>
+									</div>
+								</div>
+								<!-- 서브메뉴 상세메뉴 -->
+								<div class="h_menulist_content">
+									<div class="h_menu_box">
+										<ul class="h_text_wrap">
+											<li><a href="<%=ctx%>/hotelPackage">호텔 패키지</a></li>
+											<li><a href="<%=ctx%>/hotelEvent">호텔 이벤트</a></li>
+										</ul>
+									</div>
+									<!-- 이미지 -->
+									<div class="h_menu_img">
+										<a href="<%=ctx%>/hotelPackage"><img src="<%=ctx%>/img/package3.jpg"/></a>
+									</div>
+								</div><!-- 서브메뉴 상세메뉴 -->
+							</div>
+						</div><!-- 서브메뉴 -->
+					</li><!-- 프로모션 -->
+					
+					<li><a href="<%=ctx%>/diningMain">다이닝</a>
+						<!-- 서브메뉴 -->
+						<div class="h_menulist_wrap">
+							<div class="h_menulist_box">
+								<!-- 서브메뉴 제목 -->
+								<div class="h_menulist_top">
+									<div class="h_submenu_title">
+										<a href="<%=ctx%>/diningMain">다이닝</a>
+										<a href="<%=ctx%>/diningMain"><i class="xi-play-circle-o"></i></a>
+									</div>
+									<div class="h_rev_link">
+										<span class="h_rev_img"><img src="<%=ctx%>/img/bed.png"/></span>
+										<c:if test="${user_id==null || user_id!='admin' }">
+											<span class="h_rev_btn"><a href="<%=ctx%>/rsv">객실예약</a></span>
+										</c:if>
+									</div>
+								</div>
+								<!-- 서브메뉴 상세메뉴 -->
+								<div class="h_menulist_content">
+									<div class="h_menu_box">
+										<ul class="h_text_wrap">
+											<li><a href="<%=ctx%>/diningMain">레스토랑</a></li>
+										</ul>
+									</div>
+									<!-- 이미지 -->
+									<div class="h_menu_img">
+										<a href="<%=ctx%>/diningMain"><img src="<%=ctx%>/img/daning.jpg"/></a>
+									</div>
+								</div><!-- 서브메뉴 상세메뉴 -->
+							</div>
+						</div><!-- 서브메뉴 -->
+					</li><!-- 다이닝 -->
+				</ul>
+				<c:if test="${user_id==null || user_id!='admin' }">
+					<div id="hRsv">
+						<a href="<%=ctx%>/rsv"><span>예약하기</span></a>
+					</div>
+				</c:if>
+				<c:if test="${user_id!=null && user_id=='admin' }">
+					<div id="hRsv">
+						<a href="<%=ctx%>/adminMain"><span>관리자페이지</span></a>
+					</div>
+				</c:if>
+			</div>
+		</div><!-- 하단 -->
+		<!-- 서브메뉴 배경 -->
+		<div id="hWapper"></div>
+	</div>
+</header>

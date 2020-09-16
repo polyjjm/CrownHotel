@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.crown.board.BoardDAOImp">
+	<select id="getTotalRecord" parameterType="kr.co.crown.board.PagingVO" resultType="java.lang.Integer">
+		select count(no) from board
+		<if test="searchKey !=null and searchWord !=null">
+			 where ${searchKey} like '%'||#{searchWord}||'%'
+		</if>
+	</select>
+	<insert id="boardInsert" parameterType="kr.co.crown.board.BoardVO">
+		insert into board(no,  subject, content,ip, writedate)
+		values(board_seq.nextval, #{subject}, #{content}, #{ip}, sysdate)
+	</insert>
+	<select id="selectRecord" resultType="kr.co.crown.board.BoardVO">
+		select no, subject, content, to_char(writedate ,'YY-MM-DD') writedate from board where no=#{param1} 
+	</select>
+	<update id="updateRecord">
+		update board set subject=#{param2}, content=#{param3} where no=#{param1}
+	</update>
+	<delete id="deleteRecord">
+		delete from board where no=#{param1}
+	</delete>
+	<select id="allSelectRecord" parameterType="kr.co.crown.board.PagingVO"  resultType="kr.co.crown.board.BoardVO">
+			select * from 
+				(select * from 
+                    (select no, subject, to_char(writedate ,'YY-MM-DD') writedate,ip
+                          from board
+                     <if test="searchKey != null and searchWord != null">
+                     	  where ${searchKey} like '%'||#{searchWord}||'%'
+                     </if> 
+                     <if test="pageNum == totalPage">
+	                      order by no desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum}*#{onePageRecord} order by no asc) 
+	                      where rownum <![CDATA[<=]]> #{lastPageRecords} order by no desc
+                     </if>
+                     <if test="pageNum != totalPage">
+	                       order by no desc) 
+	                      where rownum <![CDATA[<=]]> #{pageNum}*#{onePageRecord} order by no asc) 
+	                      where rownum <![CDATA[<=]]> #{onePageRecord} order by no desc
+                    </if>
+	</select>
+</mapper>

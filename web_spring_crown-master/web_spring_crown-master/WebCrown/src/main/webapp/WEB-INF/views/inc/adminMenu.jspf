@@ -1,0 +1,167 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<link rel="stylesheet" href="<%=ctx %>/css/admin.css" type="text/css" />
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" />  
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script>
+$(function(){
+	//통계
+
+    $("#userCheckIn").datepicker({
+        showOn: "both",
+
+        buttonImage: "img/ca.jpg",
+
+        buttonImageOnly: true,
+
+        buttonText: "Select date",
+    	dateFormat: "yy-mm-dd"
+    	
+    });
+    $("#userCheckOut").datepicker({
+    	
+        showOn: "both",
+
+        buttonImage: "img/ca.jpg",
+
+        buttonImageOnly: true,
+
+        buttonText: "Select date",
+        dateFormat: "yy-mm-dd"
+    	
+    });
+
+	var ctx = document.getElementById('myChart');
+	var month1 =${vo1.january};
+	var month2 =${vo1. february};
+	var month3 =${vo1.march};
+	var month4 =${vo1.april};
+	var month5 =${vo1.may};
+	var month6 =${vo1.june};
+	var month7 =${vo1. july};
+	var month8 =${vo1.auguest};
+	var month9 =${vo1.september};
+	var month10 =${vo1.october};
+	var month11 =${vo1.november};
+	var month12 =${vo1.december};
+	$(".cntprice").html(month1+month2+month3+month4+month5+month6+month7+month8+month9+month10+month11+month12+"원");
+	$(".1").html(month1+"원");
+	$(".2").html(month2+"원");
+	$(".3").html(month3+"원");
+	$(".4").html(month4+"원");
+	$(".5").html(month5+"원");
+	$(".6").html(month6+"원");
+	$(".7").html(month7+"원");
+	$(".8").html(month8+"원");
+	$(".9").html(month9+"원");
+	$(".10").html(month10+"원");
+	$(".11").html(month11+"원");
+	$(".12").html(month12+"원");
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ['January', 'February', 'March', 'April', 'May', 'June','July','Auguest','September','October','November','December'], //열이름
+			datasets: [{
+				label: '# of Votes',
+				data: [month1,month2,month3,month4,month5,month6,month7,month8,month9,month10,month11,month12],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			responsive: false,
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			},
+		}
+	});
+	
+});
+</script>
+
+
+
+<section>
+	<div class="admin_main_container">
+		<!-- 메뉴바 -->
+		<div class="admin_menu_wrap">
+			
+			<div class="admin_menu_box">
+				<a href="<%=ctx%>/"><img src="<%=ctx%>/img/crown-f-w.png" class="admin_menu_img"/></a>
+			</div>
+			<!-- 관리자 프로필 -->
+			<input type="hidden" name="user_id" value="${user_id}"/>
+			<input type="hidden" name="logStatus" value="${logStatus}"/>
+			<div class="admin_menu_box">
+				<c:if test="${user_id!=null && user_id!='' && user_id=='admin' }">
+					<div class="admin_menu_userid">${user_name}님</div>
+					<div class="admin_menu_logout"><a href="<%=ctx%>/adminLogout">로그아웃</a></div>
+				</c:if>
+			</div>
+			
+			<div class="admin_menu_box">
+				<div class="admin_menu_title">예약관리</div>
+				<div class="admin_menu_content_box">
+					<a href="<%=ctx%>/allUserRsvList">예약목록</a>
+				</div>
+			</div> 
+			<div class="admin_menu_box">
+				<div class="admin_menu_title">객실 관리</div>
+				<div class="admin_menu_content_box">
+					<a href="<%=ctx%>/adminRoomTypeAdd">객실타입 등록</a>
+					<a href="<%=ctx%>/adminRoomTypeList">객실타입 목록</a>
+					<a href="<%=ctx%>/adminRoomAdd">객실 등록</a>
+					<a href="<%=ctx%>/adminRoomList">객실 목록</a>
+				</div>
+			</div>
+			<div class="admin_menu_box">
+				<div class="admin_menu_title">프로모션 관리</div>
+				<div class="admin_menu_content_box">
+					<a href="<%=ctx%>/adminPackageList">호텔 패키지</a>
+					<a href="<%=ctx%>/adminEventList">호텔 이벤트</a>
+				</div>
+			</div>
+			<div class="admin_menu_box">
+	            <div class="admin_menu_title">공지사항(뉴스)</div>
+	            <div class="admin_menu_content_box">
+	               <a href="<%=ctx%>/admin/boardList">뉴스 목록</a>
+	               <a href="<%=ctx%>/boardWrite">뉴스 등록</a>
+	            </div>
+	        </div>
+	        <div class="admin_menu_box">
+				<div class="admin_menu_title">회원관리</div>
+				<div class="admin_menu_content_box">
+					<a href="<%=ctx%>/adminMember">회원 목록</a>
+				</div>
+			</div>
+			<!-- <div class="admin_menu_box">
+				<div class="admin_menu_title">매출관리</div>
+				<div class="admin_menu_content_box">
+					<a href="#">매출목록</a>
+				</div>
+			</div> -->
+			
+		</div>
+	
